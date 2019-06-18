@@ -1,0 +1,192 @@
+﻿@model IEnumerable<WebCC.StudentBeginNewCourse_V>
+
+@{
+    ViewBag.Title = "学生选课";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>学生选课</h2>
+
+<script>
+    $(function () {
+        $.ajax({
+            url: '',
+            type:'post',
+            datatype: 'json',
+            success: success,
+            error:error
+        });
+        function success(e,data)
+        {
+            var arraylist = [];
+            arraylist.push('<tr><td>编号</td><td>姓名</td><td>性别</td><td>年龄</td><td>爱好</td><td>选项1</td><td>选项2</td></tr>');
+            arraylist.push('<tr> <td>1</td> <td>2</td> <td>3</td> <td>4</td> <td>5</td>' +
+                '<td><input class="auto_input_st" type="button" id="asd" value="删除" data-id-info="1" onclick="deleteTr(' + '1' + ')"/></td > ' +
+                '<td><input class="auto_input_st" type="button" data-id-info="1" value="增加" onclick="addTr(' + '1' + ')" /></td></tr > ');
+            for (var i = 0; i < arraylist.length; i++) {
+                var tr = arraylist[i];
+                $('#tatatata').append(tr);
+            };
+        }
+        function error(e, data)
+        {
+        }
+        $("#testt").click(function () {
+
+
+        });
+    })
+    function addTr(id) {
+        alert("增加" + id);
+        //增加
+    }
+    function deleteTr(id) {
+        alert("删除" + id);
+        //删除
+    }
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    idNewC: $('#IDNewCourse').val(),
+                },
+                url: "StudentBeginNewCourse_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+            $('#IDNewCourse').val("");
+        });
+
+</script>
+
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 4px 20px;
+                border-radius: 6px;
+            }
+    </style>
+    <div class="Internal_Style">
+        <p>
+            请输入课程ID（IDNewCourse）：
+        </p>
+        <p>
+            <input type="number" id="IDNewCourse" placeholder="请输入课程ID"/>
+        </p>
+        <p>
+            <input type="button" id="Add_Ok" value="确定选课" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudyTimeCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccommodateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureNewCourse)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudyTimeCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccommodateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatureNewCourse)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

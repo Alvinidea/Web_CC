@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "StudentBeginNewCourse_jsonGet";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+<h2>可选课程</h2>
+<hr/>
+<script>
+    $(function () {
+        function success(data) {
+            var arr = [];
+            arr.push('<table class="table"><tr>'
+                + '<th>课程编号</th>'
+                + '<th>课程名称</th > '
+                + '<th>学分</th>'
+                + '<th>学时</th > '
+                + '<th>开始时间</th>'
+                + '<th>课程性质</th > '
+                + '<th>容纳人数</th > '
+                + '<th></th> <th></th></tr > ');
+            $.each(data, function (i, item) {
+                arr.push('<tr><td>' + item.NumberCourse
+                    + '</td><td>' + item.NameCourse
+                    + '</td><td>' + item.ScoreCourse
+                    + '</td><td>' + item.StudyTimeCourse
+                    + '</td><td>' + item.BeginTimeNewCourse
+                    + '</td><td>' + item.NatureNewCourse
+                    + '</td><td>' + item.AccommodateNewCourse
+                    + '</td><td><input class="btn btn-default" type="button" data-id-info="1" value="选课" onclick="addTr(' + item.IDNewCourse + ')" />'
+                    + '</td></tr>');
+            })
+            $("#info_table").html(
+                arr.join("")
+            );
+        }
+        function error(e, data) {
+            alert('错误！');
+        }
+        $.ajax({
+            url: '@Url.Action("StudentBeginNewCourse_jsonGet", "Student")',
+            type: 'post',
+            data: {
+                currentPage: '1'
+            },
+            datatype: 'json',
+            success: success,
+            error:error
+        });
+        @*$.ajax({
+            url: '@Url.Action("StudentBeginNewCourse_jsonSet_add", "Student")',
+            type: 'post',
+            data: {
+                IDNewCourse: -1
+            },
+            datatype: 'json',
+            success: function (data) {
+                if (data.IDNewCourse == 0)
+                {
+                    alert("您已经选过此课程!!! 请不要再次选择");
+                    return;
+                }
+                var arr = [];
+                $.each(data, function (i, item) {
+                    arr.push('<tr data-id-info="' + item.IDNewCourse +'"><td>' + item.NumberCourse
+                        + '</td><td>' + item.NameCourse
+                        + '</td><td>' + item.ScoreCourse
+                        + '</td><td>' + item.StudyTimeCourse
+                        + '</td><td>' + item.BeginTimeNewCourse
+                        + '</td><td>' + item.NatureNewCourse
+                        + '</td><td>' + item.AccommodateNewCourse
+                        + '</td><td><input class="btn btn-default" type="button" data-id-info="" value="退选" onclick="deleteTr(' + item.IDNewCourse + ')" />'
+                        + '</td></tr>');
+                })
+                $("#add_info_table_checked").append(
+                    arr.join("")
+                );
+             },
+            error: function (e)
+            {
+                alert(e.message);
+            }
+        });*@
+
+        $("#Pagination").pagination({
+            currentPage: 1,
+            totalPage: @ViewBag.totalPage,//获取总页数
+            isShow: true,
+            count: 7,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function (currentPage) {
+                $.post(
+                    '@Url.Action("StudentBeginNewCourse_jsonGet", "Student")',
+                    { currentPage: currentPage },
+                        success);
+            }
+        });
+    })
+    //点击选课按钮运行的事件
+    function addTr(id) {
+        if (confirm('确定选课？') == false) {//确认框
+            return;
+        }
+        //增加
+        $.ajax({
+            url: '@Url.Action("StudentBeginNewCourse_jsonSet_add", "Student")',
+            type: 'post',
+            data: {
+                IDNewCourse: id
+            },
+            datatype: 'json',
+            success: function (data) {
+                if (data.IDNewCourse == 0)
+                {
+                    alert("您已经选过此课程!!! 请不要再次选择");
+                    return;
+                }
+                var arr = [];
+                $.each(data, function (i, item) {
+                    arr.push('<tr data-id-info="' + item.IDNewCourse +'"><td>' + item.NumberCourse
+                        + '</td><td>' + item.NameCourse
+                        + '</td><td>' + item.ScoreCourse
+                        + '</td><td>' + item.StudyTimeCourse
+                        + '</td><td>' + item.BeginTimeNewCourse
+                        + '</td><td>' + item.NatureNewCourse
+                        + '</td><td>' + item.AccommodateNewCourse
+                        + '</td><td><input class="btn btn-default" type="button" data-id-info="" value="退选" onclick="deleteTr(' + item.IDNewCourse + ')" />'
+                        + '</td></tr>');
+                })
+                $("#add_info_table_checked").append(
+                    arr.join("")
+                );
+            },
+            error: function (e)
+            {
+                alert(e.message);
+            }
+        });
+
+    }
+        //点击退选选课按钮运行的事件
+    function deleteTr(id) {
+        if (confirm('确定退选课程？') == false)
+        {//确认框
+            return;
+        }
+        //删除
+        $.ajax({
+            url: '@Url.Action("StudentBeginNewCourse_jsonSet_delete", "Student")',
+            type: 'post',
+            data: {
+                IDNewCourse: id
+            },
+            datatype: 'json',
+            success: function (data) {
+                if (data.msg == 0) {
+                    alert("您未选过此课程!!! ");
+                    return;
+                } else {
+                    alert("课程退选成功!!! ");
+                    $('tr[data-id-info=' + data.IDNewCourse + ']').remove();
+                    //$(this).remove();
+                }
+            },
+            error: function (e) {
+                alert(e.message);
+            }
+        });
+    }
+
+
+</script>
+
+<div class="table" id="info_table">
+
+
+</div>
+<div class="box">
+    <div id="Pagination" class="page fl"></div>
+</div>
+<p>
+    <hr />
+</p>
+<div class="table" id="info_table_checked">
+    <h2>已选课程</h2>
+    <table id="add_info_table_checked" class="table">
+            <tr>
+                <th>课程编号</th>
+                <th>课程名称</th> 
+                <th>学分</th>
+                <th>学时</th> 
+                <th>开始时间</th>
+                <th>课程性质</th> 
+                <th>容纳人数</th> 
+                <th></th>
+            </tr>
+        </table>
+</div>

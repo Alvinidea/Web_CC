@@ -1,0 +1,39 @@
+﻿body {
+}
+
+.Stu_header {
+    width: 100%;
+    height: 120px;
+    border-radius: 6px;
+    background-color: skyblue;
+}
+
+.Stu_Container {
+    width: 100%;
+    height: 800px;
+    border-radius: 6px;
+}
+
+.Stu_LeftList {
+    padding: 30px 50px;
+    width: 25%;
+    height: 800px;
+    border-radius: 6px;
+    background-color: deepskyblue;
+    float: left;
+}
+
+.Stu_RightBody {
+    width: 72%;
+    height: 800px;
+    border-radius: 6px;
+    float: right;
+}
+
+.Stu_footer {
+    width: 100%;
+    height: 70px;
+    border-radius: 6px;
+    background-color: cornflowerblue;
+    clear: both;
+}

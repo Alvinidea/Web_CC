@@ -1,0 +1,2124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBWebCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arranger_table">
+          <Key>
+            <PropertyRef Name="IDArranger" />
+          </Key>
+          <Property Name="IDArranger" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="NumberArranger" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameArranger" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailArranger" Type="varchar" MaxLength="100" />
+          <Property Name="AgeArranger" Type="int" />
+          <Property Name="SexArranger" Type="varchar" MaxLength="10" />
+          <Property Name="PhoneNumArranger" Type="varchar" MaxLength="50" />
+          <Property Name="PasscodeArranger" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="ImageArranger" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Authority_table">
+          <Key>
+            <PropertyRef Name="IDAuthority" />
+          </Key>
+          <Property Name="IDAuthority" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelAuthority" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Building_table">
+          <Key>
+            <PropertyRef Name="IDBuilding" />
+          </Key>
+          <Property Name="IDBuilding" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameBuilding" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumBuilding" Type="int" Nullable="false" />
+          <Property Name="CountBuilding" Type="int" />
+        </EntityType>
+        <EntityType Name="Classroom_table">
+          <Key>
+            <PropertyRef Name="IDClassroom" />
+          </Key>
+          <Property Name="IDClassroom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDBuilding" Type="int" />
+          <Property Name="NumClassroom" Type="int" Nullable="false" />
+          <Property Name="PeopleNumClassroom" Type="int" />
+        </EntityType>
+        <EntityType Name="Course_table">
+          <Key>
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="IDCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileCourse" Type="varchar" MaxLength="400" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="StudyTimeCourse" Type="int" />
+        </EntityType>
+        <EntityType Name="Dorm_table">
+          <Key>
+            <PropertyRef Name="IDDorm" />
+          </Key>
+          <Property Name="IDDorm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumDorm" Type="int" Nullable="false" />
+          <Property Name="CountDorm" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LiveDorm_table">
+          <Key>
+            <PropertyRef Name="IDLiveDorm" />
+          </Key>
+          <Property Name="IDLiveDorm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDStudent" Type="int" Nullable="false" />
+          <Property Name="IDDorm" Type="int" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="NewCourse_table">
+          <Key>
+            <PropertyRef Name="IDNewCourse" />
+          </Key>
+          <Property Name="IDNewCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" />
+          <Property Name="IDCourse" Type="int" />
+          <Property Name="IDClassroom" Type="int" />
+          <Property Name="IDSchoolhour" Type="int" />
+          <Property Name="SetTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="AccommodateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schoolhour_table">
+          <Key>
+            <PropertyRef Name="IDSchoolhour" />
+          </Key>
+          <Property Name="IDSchoolhour" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimesectionSchoolhour" Type="int" Nullable="false" />
+          <Property Name="TimesectionSchoolhourDetail" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_table">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+          </Key>
+          <Property Name="IDStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgeStudent" Type="int" />
+          <Property Name="PasscodeStudent" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="GradeStudent" Type="int" Nullable="false" />
+          <Property Name="YearsStudent" Type="int" />
+          <Property Name="ImageStudent" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="StudyCourse_table">
+          <Key>
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="IDStudyCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDStudent" Type="int" />
+          <Property Name="IDNewCourse" Type="int" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher_table">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="IDTeacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgeTeacher" Type="int" />
+          <Property Name="SexTeacher" Type="varchar" MaxLength="10" />
+          <Property Name="GradeTeacher" Type="int" />
+          <Property Name="PhoneNumTeacher" Type="varchar" MaxLength="50" />
+          <Property Name="EmailTeacher" Type="varchar" MaxLength="100" />
+          <Property Name="PasscodeTeacher" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="ImageTeacher" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageClassroom_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageClassroom_V">
+          <Key>
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="IDClassroom" />
+          </Key>
+          <Property Name="NumClassroom" Type="int" Nullable="false" />
+          <Property Name="PeopleNumClassroom" Type="int" />
+          <Property Name="NameBuilding" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumBuilding" Type="int" Nullable="false" />
+          <Property Name="CountBuilding" Type="int" />
+          <Property Name="IDBuilding" Type="int" />
+          <Property Name="IDClassroom" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageFinishedSetCourse_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageFinishedSetCourse_V">
+          <Key>
+            <PropertyRef Name="IDNewCourse" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="TimesectionSchoolhour" />
+            <PropertyRef Name="TimesectionSchoolhourDetail" />
+          </Key>
+          <Property Name="IDNewCourse" Type="int" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileCourse" Type="varchar" MaxLength="400" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="StudyTimeCourse" Type="int" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="SetTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="AccommodateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailTeacher" Type="varchar" MaxLength="100" />
+          <Property Name="NameBuilding" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumBuilding" Type="int" Nullable="false" />
+          <Property Name="NumClassroom" Type="int" Nullable="false" />
+          <Property Name="TimesectionSchoolhour" Type="int" Nullable="false" />
+          <Property Name="TimesectionSchoolhourDetail" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageLiveDorm_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageLiveDorm_V">
+          <Key>
+            <PropertyRef Name="IDLiveDorm" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="NumDorm" />
+            <PropertyRef Name="CountDorm" />
+          </Key>
+          <Property Name="IDLiveDorm" Type="int" Nullable="false" />
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GradeStudent" Type="int" Nullable="false" />
+          <Property Name="YearsStudent" Type="int" />
+          <Property Name="NumDorm" Type="int" Nullable="false" />
+          <Property Name="CountDorm" Type="int" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageManager_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageManager_V">
+          <Key>
+            <PropertyRef Name="IDArranger" />
+            <PropertyRef Name="NumberArranger" />
+            <PropertyRef Name="NameArranger" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDArranger" Type="int" Nullable="false" />
+          <Property Name="NumberArranger" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameArranger" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumArranger" Type="varchar" MaxLength="50" />
+          <Property Name="EmailArranger" Type="varchar" MaxLength="100" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="LevelAuthority" Type="int" Nullable="false" />
+          <Property Name="AgeArranger" Type="int" />
+          <Property Name="SexArranger" Type="varchar" MaxLength="10" />
+          <Property Name="ImageArranger" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageStuChooseCourse_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageStuChooseCourse_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SetTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NumBuilding" Type="int" Nullable="false" />
+          <Property Name="NameBuilding" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumClassroom" Type="int" Nullable="false" />
+          <Property Name="AccommodateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageStudent_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageStudent_V">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="LevelAuthority" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="NumDorm" />
+            <PropertyRef Name="CountDorm" />
+          </Key>
+          <Property Name="IDStudent" Type="int" Nullable="false" />
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="LevelAuthority" Type="int" Nullable="false" />
+          <Property Name="AgeStudent" Type="int" />
+          <Property Name="GradeStudent" Type="int" Nullable="false" />
+          <Property Name="YearsStudent" Type="int" />
+          <Property Name="ImageStudent" Type="varchar" MaxLength="200" />
+          <Property Name="NumDorm" Type="int" Nullable="false" />
+          <Property Name="CountDorm" Type="int" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageStuGrade_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageStuGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.ManageTeacher_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ManageTeacher_V">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumTeacher" Type="varchar" MaxLength="50" />
+          <Property Name="EmailTeacher" Type="varchar" MaxLength="100" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="LevelAuthority" Type="int" Nullable="false" />
+          <Property Name="GradeTeacher" Type="int" />
+          <Property Name="SexTeacher" Type="varchar" MaxLength="10" />
+          <Property Name="AgeTeacher" Type="int" />
+          <Property Name="ImageTeacher" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.StudentBeginNewCourse_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="StudentBeginNewCourse_V">
+          <Key>
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDNewCourse" />
+          </Key>
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileCourse" Type="varchar" MaxLength="400" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="StudyTimeCourse" Type="int" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SetTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="AccommodateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="IDNewCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.StudentFinishedChooseCourse_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="StudentFinishedChooseCourse_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.StudentGetGrade_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="StudentGetGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.StudentInfo_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="StudentInfo_V">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDStudent" Type="int" Nullable="false" />
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgeStudent" Type="int" />
+          <Property Name="GradeStudent" Type="int" Nullable="false" />
+          <Property Name="YearsStudent" Type="int" />
+          <Property Name="ImageStudent" Type="varchar" MaxLength="200" />
+          <Property Name="IDAuthority" Type="int" />
+          <Property Name="LevelAuthority" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.TeacherFinishedGetGrade_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TeacherFinishedGetGrade_V">
+          <Key>
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.TeacherFinishedSetCourse_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TeacherFinishedSetCourse_V">
+          <Key>
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDTeacher" />
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileCourse" Type="varchar" MaxLength="400" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="StudyTimeCourse" Type="int" />
+          <Property Name="SetTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+          <Property Name="IDCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBWebCC.dbo.TeacherSetStuGrade_V”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TeacherSetStuGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="NumberStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameStudent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameCourse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScoreCourse" Type="int" />
+          <Property Name="StateNewCourse" Type="int" />
+          <Property Name="NatureNewCourse" Type="int" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="datetime" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="int" Nullable="false" />
+          <Property Name="NumberTeacher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ARRANGER_ARRANGER__AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Arranger_table" Type="Self.Arranger_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Arranger_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLASSROO_CLASSROOM_BUILDING">
+          <End Role="Building_table" Type="Self.Building_table" Multiplicity="0..1" />
+          <End Role="Classroom_table" Type="Self.Classroom_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building_table">
+              <PropertyRef Name="IDBuilding" />
+            </Principal>
+            <Dependent Role="Classroom_table">
+              <PropertyRef Name="IDBuilding" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIVEDORM_REFERENCE_DORM_TAB">
+          <End Role="Dorm_table" Type="Self.Dorm_table" Multiplicity="1" />
+          <End Role="LiveDorm_table" Type="Self.LiveDorm_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm_table">
+              <PropertyRef Name="IDDorm" />
+            </Principal>
+            <Dependent Role="LiveDorm_table">
+              <PropertyRef Name="IDDorm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIVEDORM_REFERENCE_STUDENT_">
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="1" />
+          <End Role="LiveDorm_table" Type="Self.LiveDorm_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_table">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="LiveDorm_table">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_NEWCOURSE_TEACHER_">
+          <End Role="Teacher_table" Type="Self.Teacher_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher_table">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_CLASSROO">
+          <End Role="Classroom_table" Type="Self.Classroom_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom_table">
+              <PropertyRef Name="IDClassroom" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDClassroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_COURSE_T">
+          <End Role="Course_table" Type="Self.Course_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_table">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_SCHOOLHO">
+          <End Role="Schoolhour_table" Type="Self.Schoolhour_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schoolhour_table">
+              <PropertyRef Name="IDSchoolhour" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDSchoolhour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT__AUTHORITY_AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Student_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDYCOU_REFERENCE_NEWCOURS">
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="0..1" />
+          <End Role="StudyCourse_table" Type="Self.StudyCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewCourse_table">
+              <PropertyRef Name="IDNewCourse" />
+            </Principal>
+            <Dependent Role="StudyCourse_table">
+              <PropertyRef Name="IDNewCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDYCOU_STUDYCOUR_STUDENT_">
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="0..1" />
+          <End Role="StudyCourse_table" Type="Self.StudyCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_table">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="StudyCourse_table">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEACHER__AUTHORITY_AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Teacher_table" Type="Self.Teacher_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Teacher_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBWebCCModelStoreContainer">
+          <EntitySet Name="Arranger_table" EntityType="Self.Arranger_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authority_table" EntityType="Self.Authority_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Building_table" EntityType="Self.Building_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classroom_table" EntityType="Self.Classroom_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_table" EntityType="Self.Course_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dorm_table" EntityType="Self.Dorm_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LiveDorm_table" EntityType="Self.LiveDorm_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewCourse_table" EntityType="Self.NewCourse_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schoolhour_table" EntityType="Self.Schoolhour_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_table" EntityType="Self.Student_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyCourse_table" EntityType="Self.StudyCourse_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher_table" EntityType="Self.Teacher_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManageClassroom_V" EntityType="Self.ManageClassroom_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageClassroom_V].[NumClassroom] AS [NumClassroom], 
+[ManageClassroom_V].[PeopleNumClassroom] AS [PeopleNumClassroom], 
+[ManageClassroom_V].[NameBuilding] AS [NameBuilding], 
+[ManageClassroom_V].[NumBuilding] AS [NumBuilding], 
+[ManageClassroom_V].[CountBuilding] AS [CountBuilding], 
+[ManageClassroom_V].[IDBuilding] AS [IDBuilding], 
+[ManageClassroom_V].[IDClassroom] AS [IDClassroom]
+FROM [dbo].[ManageClassroom_V] AS [ManageClassroom_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageFinishedSetCourse_V" EntityType="Self.ManageFinishedSetCourse_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageFinishedSetCourse_V].[IDNewCourse] AS [IDNewCourse], 
+[ManageFinishedSetCourse_V].[NumberCourse] AS [NumberCourse], 
+[ManageFinishedSetCourse_V].[NameCourse] AS [NameCourse], 
+[ManageFinishedSetCourse_V].[ProfileCourse] AS [ProfileCourse], 
+[ManageFinishedSetCourse_V].[ScoreCourse] AS [ScoreCourse], 
+[ManageFinishedSetCourse_V].[StudyTimeCourse] AS [StudyTimeCourse], 
+[ManageFinishedSetCourse_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[ManageFinishedSetCourse_V].[StateNewCourse] AS [StateNewCourse], 
+[ManageFinishedSetCourse_V].[SetTimeNewCourse] AS [SetTimeNewCourse], 
+[ManageFinishedSetCourse_V].[AccommodateNewCourse] AS [AccommodateNewCourse], 
+[ManageFinishedSetCourse_V].[NatureNewCourse] AS [NatureNewCourse], 
+[ManageFinishedSetCourse_V].[NameTeacher] AS [NameTeacher], 
+[ManageFinishedSetCourse_V].[NumberTeacher] AS [NumberTeacher], 
+[ManageFinishedSetCourse_V].[EmailTeacher] AS [EmailTeacher], 
+[ManageFinishedSetCourse_V].[NameBuilding] AS [NameBuilding], 
+[ManageFinishedSetCourse_V].[NumBuilding] AS [NumBuilding], 
+[ManageFinishedSetCourse_V].[NumClassroom] AS [NumClassroom], 
+[ManageFinishedSetCourse_V].[TimesectionSchoolhour] AS [TimesectionSchoolhour], 
+[ManageFinishedSetCourse_V].[TimesectionSchoolhourDetail] AS [TimesectionSchoolhourDetail]
+FROM [dbo].[ManageFinishedSetCourse_V] AS [ManageFinishedSetCourse_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageLiveDorm_V" EntityType="Self.ManageLiveDorm_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageLiveDorm_V].[IDLiveDorm] AS [IDLiveDorm], 
+[ManageLiveDorm_V].[NumberStudent] AS [NumberStudent], 
+[ManageLiveDorm_V].[NameStudent] AS [NameStudent], 
+[ManageLiveDorm_V].[GradeStudent] AS [GradeStudent], 
+[ManageLiveDorm_V].[YearsStudent] AS [YearsStudent], 
+[ManageLiveDorm_V].[NumDorm] AS [NumDorm], 
+[ManageLiveDorm_V].[CountDorm] AS [CountDorm], 
+[ManageLiveDorm_V].[OtherLiveDorm] AS [OtherLiveDorm]
+FROM [dbo].[ManageLiveDorm_V] AS [ManageLiveDorm_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageManager_V" EntityType="Self.ManageManager_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageManager_V].[IDArranger] AS [IDArranger], 
+[ManageManager_V].[NumberArranger] AS [NumberArranger], 
+[ManageManager_V].[NameArranger] AS [NameArranger], 
+[ManageManager_V].[PhoneNumArranger] AS [PhoneNumArranger], 
+[ManageManager_V].[EmailArranger] AS [EmailArranger], 
+[ManageManager_V].[IDAuthority] AS [IDAuthority], 
+[ManageManager_V].[LevelAuthority] AS [LevelAuthority], 
+[ManageManager_V].[AgeArranger] AS [AgeArranger], 
+[ManageManager_V].[SexArranger] AS [SexArranger], 
+[ManageManager_V].[ImageArranger] AS [ImageArranger]
+FROM [dbo].[ManageManager_V] AS [ManageManager_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageStuChooseCourse_V" EntityType="Self.ManageStuChooseCourse_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageStuChooseCourse_V].[NumberStudent] AS [NumberStudent], 
+[ManageStuChooseCourse_V].[NameStudent] AS [NameStudent], 
+[ManageStuChooseCourse_V].[NumberCourse] AS [NumberCourse], 
+[ManageStuChooseCourse_V].[NameCourse] AS [NameCourse], 
+[ManageStuChooseCourse_V].[ScoreCourse] AS [ScoreCourse], 
+[ManageStuChooseCourse_V].[NumberTeacher] AS [NumberTeacher], 
+[ManageStuChooseCourse_V].[NameTeacher] AS [NameTeacher], 
+[ManageStuChooseCourse_V].[SetTimeNewCourse] AS [SetTimeNewCourse], 
+[ManageStuChooseCourse_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[ManageStuChooseCourse_V].[StateNewCourse] AS [StateNewCourse], 
+[ManageStuChooseCourse_V].[NumBuilding] AS [NumBuilding], 
+[ManageStuChooseCourse_V].[NameBuilding] AS [NameBuilding], 
+[ManageStuChooseCourse_V].[NumClassroom] AS [NumClassroom], 
+[ManageStuChooseCourse_V].[AccommodateNewCourse] AS [AccommodateNewCourse], 
+[ManageStuChooseCourse_V].[NatureNewCourse] AS [NatureNewCourse], 
+[ManageStuChooseCourse_V].[GradeStudyCourse] AS [GradeStudyCourse], 
+[ManageStuChooseCourse_V].[IDStudyCourse] AS [IDStudyCourse]
+FROM [dbo].[ManageStuChooseCourse_V] AS [ManageStuChooseCourse_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageStudent_V" EntityType="Self.ManageStudent_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageStudent_V].[IDStudent] AS [IDStudent], 
+[ManageStudent_V].[NumberStudent] AS [NumberStudent], 
+[ManageStudent_V].[NameStudent] AS [NameStudent], 
+[ManageStudent_V].[IDAuthority] AS [IDAuthority], 
+[ManageStudent_V].[LevelAuthority] AS [LevelAuthority], 
+[ManageStudent_V].[AgeStudent] AS [AgeStudent], 
+[ManageStudent_V].[GradeStudent] AS [GradeStudent], 
+[ManageStudent_V].[YearsStudent] AS [YearsStudent], 
+[ManageStudent_V].[ImageStudent] AS [ImageStudent], 
+[ManageStudent_V].[NumDorm] AS [NumDorm], 
+[ManageStudent_V].[CountDorm] AS [CountDorm], 
+[ManageStudent_V].[OtherLiveDorm] AS [OtherLiveDorm]
+FROM [dbo].[ManageStudent_V] AS [ManageStudent_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageStuGrade_V" EntityType="Self.ManageStuGrade_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageStuGrade_V].[NumberStudent] AS [NumberStudent], 
+[ManageStuGrade_V].[NameStudent] AS [NameStudent], 
+[ManageStuGrade_V].[NumberCourse] AS [NumberCourse], 
+[ManageStuGrade_V].[NameCourse] AS [NameCourse], 
+[ManageStuGrade_V].[NumberTeacher] AS [NumberTeacher], 
+[ManageStuGrade_V].[NameTeacher] AS [NameTeacher], 
+[ManageStuGrade_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[ManageStuGrade_V].[StateNewCourse] AS [StateNewCourse], 
+[ManageStuGrade_V].[NatureNewCourse] AS [NatureNewCourse], 
+[ManageStuGrade_V].[GradeStudyCourse] AS [GradeStudyCourse], 
+[ManageStuGrade_V].[IDStudyCourse] AS [IDStudyCourse]
+FROM [dbo].[ManageStuGrade_V] AS [ManageStuGrade_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManageTeacher_V" EntityType="Self.ManageTeacher_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ManageTeacher_V].[IDTeacher] AS [IDTeacher], 
+[ManageTeacher_V].[NumberTeacher] AS [NumberTeacher], 
+[ManageTeacher_V].[NameTeacher] AS [NameTeacher], 
+[ManageTeacher_V].[PhoneNumTeacher] AS [PhoneNumTeacher], 
+[ManageTeacher_V].[EmailTeacher] AS [EmailTeacher], 
+[ManageTeacher_V].[IDAuthority] AS [IDAuthority], 
+[ManageTeacher_V].[LevelAuthority] AS [LevelAuthority], 
+[ManageTeacher_V].[GradeTeacher] AS [GradeTeacher], 
+[ManageTeacher_V].[SexTeacher] AS [SexTeacher], 
+[ManageTeacher_V].[AgeTeacher] AS [AgeTeacher], 
+[ManageTeacher_V].[ImageTeacher] AS [ImageTeacher]
+FROM [dbo].[ManageTeacher_V] AS [ManageTeacher_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentBeginNewCourse_V" EntityType="Self.StudentBeginNewCourse_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[StudentBeginNewCourse_V].[NumberCourse] AS [NumberCourse], 
+[StudentBeginNewCourse_V].[NameCourse] AS [NameCourse], 
+[StudentBeginNewCourse_V].[ProfileCourse] AS [ProfileCourse], 
+[StudentBeginNewCourse_V].[ScoreCourse] AS [ScoreCourse], 
+[StudentBeginNewCourse_V].[StudyTimeCourse] AS [StudyTimeCourse], 
+[StudentBeginNewCourse_V].[NumberTeacher] AS [NumberTeacher], 
+[StudentBeginNewCourse_V].[NameTeacher] AS [NameTeacher], 
+[StudentBeginNewCourse_V].[SetTimeNewCourse] AS [SetTimeNewCourse], 
+[StudentBeginNewCourse_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[StudentBeginNewCourse_V].[StateNewCourse] AS [StateNewCourse], 
+[StudentBeginNewCourse_V].[AccommodateNewCourse] AS [AccommodateNewCourse], 
+[StudentBeginNewCourse_V].[NatureNewCourse] AS [NatureNewCourse], 
+[StudentBeginNewCourse_V].[IDNewCourse] AS [IDNewCourse]
+FROM [dbo].[StudentBeginNewCourse_V] AS [StudentBeginNewCourse_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentFinishedChooseCourse_V" EntityType="Self.StudentFinishedChooseCourse_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[StudentFinishedChooseCourse_V].[NumberStudent] AS [NumberStudent], 
+[StudentFinishedChooseCourse_V].[NameStudent] AS [NameStudent], 
+[StudentFinishedChooseCourse_V].[NumberCourse] AS [NumberCourse], 
+[StudentFinishedChooseCourse_V].[NameCourse] AS [NameCourse], 
+[StudentFinishedChooseCourse_V].[ScoreCourse] AS [ScoreCourse], 
+[StudentFinishedChooseCourse_V].[NameTeacher] AS [NameTeacher], 
+[StudentFinishedChooseCourse_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[StudentFinishedChooseCourse_V].[StateNewCourse] AS [StateNewCourse], 
+[StudentFinishedChooseCourse_V].[NatureNewCourse] AS [NatureNewCourse], 
+[StudentFinishedChooseCourse_V].[IDStudyCourse] AS [IDStudyCourse]
+FROM [dbo].[StudentFinishedChooseCourse_V] AS [StudentFinishedChooseCourse_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentGetGrade_V" EntityType="Self.StudentGetGrade_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[StudentGetGrade_V].[NumberStudent] AS [NumberStudent], 
+[StudentGetGrade_V].[NameStudent] AS [NameStudent], 
+[StudentGetGrade_V].[NumberCourse] AS [NumberCourse], 
+[StudentGetGrade_V].[NameCourse] AS [NameCourse], 
+[StudentGetGrade_V].[ScoreCourse] AS [ScoreCourse], 
+[StudentGetGrade_V].[NameTeacher] AS [NameTeacher], 
+[StudentGetGrade_V].[NumberTeacher] AS [NumberTeacher], 
+[StudentGetGrade_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[StudentGetGrade_V].[StateNewCourse] AS [StateNewCourse], 
+[StudentGetGrade_V].[NatureNewCourse] AS [NatureNewCourse], 
+[StudentGetGrade_V].[GradeStudyCourse] AS [GradeStudyCourse], 
+[StudentGetGrade_V].[IDStudyCourse] AS [IDStudyCourse]
+FROM [dbo].[StudentGetGrade_V] AS [StudentGetGrade_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StudentInfo_V" EntityType="Self.StudentInfo_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[StudentInfo_V].[IDStudent] AS [IDStudent], 
+[StudentInfo_V].[NumberStudent] AS [NumberStudent], 
+[StudentInfo_V].[NameStudent] AS [NameStudent], 
+[StudentInfo_V].[AgeStudent] AS [AgeStudent], 
+[StudentInfo_V].[GradeStudent] AS [GradeStudent], 
+[StudentInfo_V].[YearsStudent] AS [YearsStudent], 
+[StudentInfo_V].[ImageStudent] AS [ImageStudent], 
+[StudentInfo_V].[IDAuthority] AS [IDAuthority], 
+[StudentInfo_V].[LevelAuthority] AS [LevelAuthority]
+FROM [dbo].[StudentInfo_V] AS [StudentInfo_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TeacherFinishedGetGrade_V" EntityType="Self.TeacherFinishedGetGrade_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[TeacherFinishedGetGrade_V].[NumberCourse] AS [NumberCourse], 
+[TeacherFinishedGetGrade_V].[NameCourse] AS [NameCourse], 
+[TeacherFinishedGetGrade_V].[NumberStudent] AS [NumberStudent], 
+[TeacherFinishedGetGrade_V].[NameStudent] AS [NameStudent], 
+[TeacherFinishedGetGrade_V].[ScoreCourse] AS [ScoreCourse], 
+[TeacherFinishedGetGrade_V].[NameTeacher] AS [NameTeacher], 
+[TeacherFinishedGetGrade_V].[StateNewCourse] AS [StateNewCourse], 
+[TeacherFinishedGetGrade_V].[NatureNewCourse] AS [NatureNewCourse], 
+[TeacherFinishedGetGrade_V].[GradeStudyCourse] AS [GradeStudyCourse], 
+[TeacherFinishedGetGrade_V].[IDTeacher] AS [IDTeacher]
+FROM [dbo].[TeacherFinishedGetGrade_V] AS [TeacherFinishedGetGrade_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TeacherFinishedSetCourse_V" EntityType="Self.TeacherFinishedSetCourse_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[TeacherFinishedSetCourse_V].[NumberTeacher] AS [NumberTeacher], 
+[TeacherFinishedSetCourse_V].[NameTeacher] AS [NameTeacher], 
+[TeacherFinishedSetCourse_V].[NumberCourse] AS [NumberCourse], 
+[TeacherFinishedSetCourse_V].[NameCourse] AS [NameCourse], 
+[TeacherFinishedSetCourse_V].[ProfileCourse] AS [ProfileCourse], 
+[TeacherFinishedSetCourse_V].[ScoreCourse] AS [ScoreCourse], 
+[TeacherFinishedSetCourse_V].[StudyTimeCourse] AS [StudyTimeCourse], 
+[TeacherFinishedSetCourse_V].[SetTimeNewCourse] AS [SetTimeNewCourse], 
+[TeacherFinishedSetCourse_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[TeacherFinishedSetCourse_V].[StateNewCourse] AS [StateNewCourse], 
+[TeacherFinishedSetCourse_V].[NatureNewCourse] AS [NatureNewCourse], 
+[TeacherFinishedSetCourse_V].[IDTeacher] AS [IDTeacher], 
+[TeacherFinishedSetCourse_V].[IDCourse] AS [IDCourse]
+FROM [dbo].[TeacherFinishedSetCourse_V] AS [TeacherFinishedSetCourse_V]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TeacherSetStuGrade_V" EntityType="Self.TeacherSetStuGrade_V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[TeacherSetStuGrade_V].[NumberStudent] AS [NumberStudent], 
+[TeacherSetStuGrade_V].[NameStudent] AS [NameStudent], 
+[TeacherSetStuGrade_V].[NumberCourse] AS [NumberCourse], 
+[TeacherSetStuGrade_V].[NameCourse] AS [NameCourse], 
+[TeacherSetStuGrade_V].[ScoreCourse] AS [ScoreCourse], 
+[TeacherSetStuGrade_V].[StateNewCourse] AS [StateNewCourse], 
+[TeacherSetStuGrade_V].[NatureNewCourse] AS [NatureNewCourse], 
+[TeacherSetStuGrade_V].[BeginTimeNewCourse] AS [BeginTimeNewCourse], 
+[TeacherSetStuGrade_V].[GradeStudyCourse] AS [GradeStudyCourse], 
+[TeacherSetStuGrade_V].[NumberTeacher] AS [NumberTeacher], 
+[TeacherSetStuGrade_V].[IDTeacher] AS [IDTeacher]
+FROM [dbo].[TeacherSetStuGrade_V] AS [TeacherSetStuGrade_V]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ARRANGER_ARRANGER__AUTHORIT" Association="Self.FK_ARRANGER_ARRANGER__AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Arranger_table" EntitySet="Arranger_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLASSROO_CLASSROOM_BUILDING" Association="Self.FK_CLASSROO_CLASSROOM_BUILDING">
+            <End Role="Building_table" EntitySet="Building_table" />
+            <End Role="Classroom_table" EntitySet="Classroom_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVEDORM_REFERENCE_DORM_TAB" Association="Self.FK_LIVEDORM_REFERENCE_DORM_TAB">
+            <End Role="Dorm_table" EntitySet="Dorm_table" />
+            <End Role="LiveDorm_table" EntitySet="LiveDorm_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVEDORM_REFERENCE_STUDENT_" Association="Self.FK_LIVEDORM_REFERENCE_STUDENT_">
+            <End Role="Student_table" EntitySet="Student_table" />
+            <End Role="LiveDorm_table" EntitySet="LiveDorm_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_NEWCOURSE_TEACHER_" Association="Self.FK_NEWCOURS_NEWCOURSE_TEACHER_">
+            <End Role="Teacher_table" EntitySet="Teacher_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_CLASSROO" Association="Self.FK_NEWCOURS_REFERENCE_CLASSROO">
+            <End Role="Classroom_table" EntitySet="Classroom_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_COURSE_T" Association="Self.FK_NEWCOURS_REFERENCE_COURSE_T">
+            <End Role="Course_table" EntitySet="Course_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_SCHOOLHO" Association="Self.FK_NEWCOURS_REFERENCE_SCHOOLHO">
+            <End Role="Schoolhour_table" EntitySet="Schoolhour_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT__AUTHORITY_AUTHORIT" Association="Self.FK_STUDENT__AUTHORITY_AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Student_table" EntitySet="Student_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDYCOU_REFERENCE_NEWCOURS" Association="Self.FK_STUDYCOU_REFERENCE_NEWCOURS">
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+            <End Role="StudyCourse_table" EntitySet="StudyCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDYCOU_STUDYCOUR_STUDENT_" Association="Self.FK_STUDYCOU_STUDYCOUR_STUDENT_">
+            <End Role="Student_table" EntitySet="Student_table" />
+            <End Role="StudyCourse_table" EntitySet="StudyCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEACHER__AUTHORITY_AUTHORIT" Association="Self.FK_TEACHER__AUTHORITY_AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Teacher_table" EntitySet="Teacher_table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBWebCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arranger_table">
+          <Key>
+            <PropertyRef Name="IDArranger" />
+          </Key>
+          <Property Name="IDArranger" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="NumberArranger" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameArranger" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailArranger" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AgeArranger" Type="Int32" />
+          <Property Name="SexArranger" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumArranger" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PasscodeArranger" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageArranger" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Authority_table" Relationship="Self.FK_ARRANGER_ARRANGER__AUTHORIT" FromRole="Arranger_table" ToRole="Authority_table" />
+        </EntityType>
+        <EntityType Name="Authority_table">
+          <Key>
+            <PropertyRef Name="IDAuthority" />
+          </Key>
+          <Property Name="IDAuthority" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelAuthority" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Arranger_table" Relationship="Self.FK_ARRANGER_ARRANGER__AUTHORIT" FromRole="Authority_table" ToRole="Arranger_table" />
+          <NavigationProperty Name="Student_table" Relationship="Self.FK_STUDENT__AUTHORITY_AUTHORIT" FromRole="Authority_table" ToRole="Student_table" />
+          <NavigationProperty Name="Teacher_table" Relationship="Self.FK_TEACHER__AUTHORITY_AUTHORIT" FromRole="Authority_table" ToRole="Teacher_table" />
+        </EntityType>
+        <EntityType Name="Building_table">
+          <Key>
+            <PropertyRef Name="IDBuilding" />
+          </Key>
+          <Property Name="IDBuilding" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBuilding" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumBuilding" Type="Int32" Nullable="false" />
+          <Property Name="CountBuilding" Type="Int32" />
+          <NavigationProperty Name="Classroom_table" Relationship="Self.FK_CLASSROO_CLASSROOM_BUILDING" FromRole="Building_table" ToRole="Classroom_table" />
+        </EntityType>
+        <EntityType Name="Classroom_table">
+          <Key>
+            <PropertyRef Name="IDClassroom" />
+          </Key>
+          <Property Name="IDClassroom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDBuilding" Type="Int32" />
+          <Property Name="NumClassroom" Type="Int32" Nullable="false" />
+          <Property Name="PeopleNumClassroom" Type="Int32" />
+          <NavigationProperty Name="Building_table" Relationship="Self.FK_CLASSROO_CLASSROOM_BUILDING" FromRole="Classroom_table" ToRole="Building_table" />
+          <NavigationProperty Name="NewCourse_table" Relationship="Self.FK_NEWCOURS_REFERENCE_CLASSROO" FromRole="Classroom_table" ToRole="NewCourse_table" />
+        </EntityType>
+        <EntityType Name="Course_table">
+          <Key>
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="IDCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfileCourse" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="StudyTimeCourse" Type="Int32" />
+          <NavigationProperty Name="NewCourse_table" Relationship="Self.FK_NEWCOURS_REFERENCE_COURSE_T" FromRole="Course_table" ToRole="NewCourse_table" />
+        </EntityType>
+        <EntityType Name="Dorm_table">
+          <Key>
+            <PropertyRef Name="IDDorm" />
+          </Key>
+          <Property Name="IDDorm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumDorm" Type="Int32" Nullable="false" />
+          <Property Name="CountDorm" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LiveDorm_table" Relationship="Self.FK_LIVEDORM_REFERENCE_DORM_TAB" FromRole="Dorm_table" ToRole="LiveDorm_table" />
+        </EntityType>
+        <EntityType Name="LiveDorm_table">
+          <Key>
+            <PropertyRef Name="IDLiveDorm" />
+          </Key>
+          <Property Name="IDLiveDorm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDStudent" Type="Int32" Nullable="false" />
+          <Property Name="IDDorm" Type="Int32" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dorm_table" Relationship="Self.FK_LIVEDORM_REFERENCE_DORM_TAB" FromRole="LiveDorm_table" ToRole="Dorm_table" />
+          <NavigationProperty Name="Student_table" Relationship="Self.FK_LIVEDORM_REFERENCE_STUDENT_" FromRole="LiveDorm_table" ToRole="Student_table" />
+        </EntityType>
+        <EntityType Name="NewCourse_table">
+          <Key>
+            <PropertyRef Name="IDNewCourse" />
+          </Key>
+          <Property Name="IDNewCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTeacher" Type="Int32" />
+          <Property Name="IDCourse" Type="Int32" />
+          <Property Name="IDClassroom" Type="Int32" />
+          <Property Name="IDSchoolhour" Type="Int32" />
+          <Property Name="SetTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="AccommodateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Classroom_table" Relationship="Self.FK_NEWCOURS_REFERENCE_CLASSROO" FromRole="NewCourse_table" ToRole="Classroom_table" />
+          <NavigationProperty Name="Course_table" Relationship="Self.FK_NEWCOURS_REFERENCE_COURSE_T" FromRole="NewCourse_table" ToRole="Course_table" />
+          <NavigationProperty Name="Teacher_table" Relationship="Self.FK_NEWCOURS_NEWCOURSE_TEACHER_" FromRole="NewCourse_table" ToRole="Teacher_table" />
+          <NavigationProperty Name="Schoolhour_table" Relationship="Self.FK_NEWCOURS_REFERENCE_SCHOOLHO" FromRole="NewCourse_table" ToRole="Schoolhour_table" />
+          <NavigationProperty Name="StudyCourse_table" Relationship="Self.FK_STUDYCOU_REFERENCE_NEWCOURS" FromRole="NewCourse_table" ToRole="StudyCourse_table" />
+        </EntityType>
+        <EntityType Name="Schoolhour_table">
+          <Key>
+            <PropertyRef Name="IDSchoolhour" />
+          </Key>
+          <Property Name="IDSchoolhour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimesectionSchoolhour" Type="Int32" Nullable="false" />
+          <Property Name="TimesectionSchoolhourDetail" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NewCourse_table" Relationship="Self.FK_NEWCOURS_REFERENCE_SCHOOLHO" FromRole="Schoolhour_table" ToRole="NewCourse_table" />
+        </EntityType>
+        <EntityType Name="Student_table">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+          </Key>
+          <Property Name="IDStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="NumberStudent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameStudent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgeStudent" Type="Int32" />
+          <Property Name="PasscodeStudent" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GradeStudent" Type="Int32" Nullable="false" />
+          <Property Name="YearsStudent" Type="Int32" />
+          <Property Name="ImageStudent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Authority_table" Relationship="Self.FK_STUDENT__AUTHORITY_AUTHORIT" FromRole="Student_table" ToRole="Authority_table" />
+          <NavigationProperty Name="LiveDorm_table" Relationship="Self.FK_LIVEDORM_REFERENCE_STUDENT_" FromRole="Student_table" ToRole="LiveDorm_table" />
+          <NavigationProperty Name="StudyCourse_table" Relationship="Self.FK_STUDYCOU_STUDYCOUR_STUDENT_" FromRole="Student_table" ToRole="StudyCourse_table" />
+        </EntityType>
+        <EntityType Name="StudyCourse_table">
+          <Key>
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="IDStudyCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDStudent" Type="Int32" />
+          <Property Name="IDNewCourse" Type="Int32" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NewCourse_table" Relationship="Self.FK_STUDYCOU_REFERENCE_NEWCOURS" FromRole="StudyCourse_table" ToRole="NewCourse_table" />
+          <NavigationProperty Name="Student_table" Relationship="Self.FK_STUDYCOU_STUDYCOUR_STUDENT_" FromRole="StudyCourse_table" ToRole="Student_table" />
+        </EntityType>
+        <EntityType Name="Teacher_table">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="NumberTeacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameTeacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgeTeacher" Type="Int32" />
+          <Property Name="SexTeacher" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GradeTeacher" Type="Int32" />
+          <Property Name="PhoneNumTeacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailTeacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PasscodeTeacher" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageTeacher" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Authority_table" Relationship="Self.FK_TEACHER__AUTHORITY_AUTHORIT" FromRole="Teacher_table" ToRole="Authority_table" />
+          <NavigationProperty Name="NewCourse_table" Relationship="Self.FK_NEWCOURS_NEWCOURSE_TEACHER_" FromRole="Teacher_table" ToRole="NewCourse_table" />
+        </EntityType>
+        <Association Name="FK_ARRANGER_ARRANGER__AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Arranger_table" Type="Self.Arranger_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Arranger_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDENT__AUTHORITY_AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Student_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEACHER__AUTHORITY_AUTHORIT">
+          <End Role="Authority_table" Type="Self.Authority_table" Multiplicity="0..1" />
+          <End Role="Teacher_table" Type="Self.Teacher_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authority_table">
+              <PropertyRef Name="IDAuthority" />
+            </Principal>
+            <Dependent Role="Teacher_table">
+              <PropertyRef Name="IDAuthority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLASSROO_CLASSROOM_BUILDING">
+          <End Role="Building_table" Type="Self.Building_table" Multiplicity="0..1" />
+          <End Role="Classroom_table" Type="Self.Classroom_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building_table">
+              <PropertyRef Name="IDBuilding" />
+            </Principal>
+            <Dependent Role="Classroom_table">
+              <PropertyRef Name="IDBuilding" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_CLASSROO">
+          <End Role="Classroom_table" Type="Self.Classroom_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom_table">
+              <PropertyRef Name="IDClassroom" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDClassroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_COURSE_T">
+          <End Role="Course_table" Type="Self.Course_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_table">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIVEDORM_REFERENCE_DORM_TAB">
+          <End Role="Dorm_table" Type="Self.Dorm_table" Multiplicity="1" />
+          <End Role="LiveDorm_table" Type="Self.LiveDorm_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm_table">
+              <PropertyRef Name="IDDorm" />
+            </Principal>
+            <Dependent Role="LiveDorm_table">
+              <PropertyRef Name="IDDorm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIVEDORM_REFERENCE_STUDENT_">
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="1" />
+          <End Role="LiveDorm_table" Type="Self.LiveDorm_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_table">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="LiveDorm_table">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_NEWCOURSE_TEACHER_">
+          <End Role="Teacher_table" Type="Self.Teacher_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher_table">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWCOURS_REFERENCE_SCHOOLHO">
+          <End Role="Schoolhour_table" Type="Self.Schoolhour_table" Multiplicity="0..1" />
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schoolhour_table">
+              <PropertyRef Name="IDSchoolhour" />
+            </Principal>
+            <Dependent Role="NewCourse_table">
+              <PropertyRef Name="IDSchoolhour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDYCOU_REFERENCE_NEWCOURS">
+          <End Role="NewCourse_table" Type="Self.NewCourse_table" Multiplicity="0..1" />
+          <End Role="StudyCourse_table" Type="Self.StudyCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewCourse_table">
+              <PropertyRef Name="IDNewCourse" />
+            </Principal>
+            <Dependent Role="StudyCourse_table">
+              <PropertyRef Name="IDNewCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STUDYCOU_STUDYCOUR_STUDENT_">
+          <End Role="Student_table" Type="Self.Student_table" Multiplicity="0..1" />
+          <End Role="StudyCourse_table" Type="Self.StudyCourse_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_table">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="StudyCourse_table">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBWebCCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arranger_table" EntityType="Self.Arranger_table" />
+          <EntitySet Name="Authority_table" EntityType="Self.Authority_table" />
+          <EntitySet Name="Building_table" EntityType="Self.Building_table" />
+          <EntitySet Name="Classroom_table" EntityType="Self.Classroom_table" />
+          <EntitySet Name="Course_table" EntityType="Self.Course_table" />
+          <EntitySet Name="Dorm_table" EntityType="Self.Dorm_table" />
+          <EntitySet Name="LiveDorm_table" EntityType="Self.LiveDorm_table" />
+          <EntitySet Name="NewCourse_table" EntityType="Self.NewCourse_table" />
+          <EntitySet Name="Schoolhour_table" EntityType="Self.Schoolhour_table" />
+          <EntitySet Name="Student_table" EntityType="Self.Student_table" />
+          <EntitySet Name="StudyCourse_table" EntityType="Self.StudyCourse_table" />
+          <EntitySet Name="Teacher_table" EntityType="Self.Teacher_table" />
+          <AssociationSet Name="FK_ARRANGER_ARRANGER__AUTHORIT" Association="Self.FK_ARRANGER_ARRANGER__AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Arranger_table" EntitySet="Arranger_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDENT__AUTHORITY_AUTHORIT" Association="Self.FK_STUDENT__AUTHORITY_AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Student_table" EntitySet="Student_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEACHER__AUTHORITY_AUTHORIT" Association="Self.FK_TEACHER__AUTHORITY_AUTHORIT">
+            <End Role="Authority_table" EntitySet="Authority_table" />
+            <End Role="Teacher_table" EntitySet="Teacher_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLASSROO_CLASSROOM_BUILDING" Association="Self.FK_CLASSROO_CLASSROOM_BUILDING">
+            <End Role="Building_table" EntitySet="Building_table" />
+            <End Role="Classroom_table" EntitySet="Classroom_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_CLASSROO" Association="Self.FK_NEWCOURS_REFERENCE_CLASSROO">
+            <End Role="Classroom_table" EntitySet="Classroom_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_COURSE_T" Association="Self.FK_NEWCOURS_REFERENCE_COURSE_T">
+            <End Role="Course_table" EntitySet="Course_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVEDORM_REFERENCE_DORM_TAB" Association="Self.FK_LIVEDORM_REFERENCE_DORM_TAB">
+            <End Role="Dorm_table" EntitySet="Dorm_table" />
+            <End Role="LiveDorm_table" EntitySet="LiveDorm_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVEDORM_REFERENCE_STUDENT_" Association="Self.FK_LIVEDORM_REFERENCE_STUDENT_">
+            <End Role="Student_table" EntitySet="Student_table" />
+            <End Role="LiveDorm_table" EntitySet="LiveDorm_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_NEWCOURSE_TEACHER_" Association="Self.FK_NEWCOURS_NEWCOURSE_TEACHER_">
+            <End Role="Teacher_table" EntitySet="Teacher_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWCOURS_REFERENCE_SCHOOLHO" Association="Self.FK_NEWCOURS_REFERENCE_SCHOOLHO">
+            <End Role="Schoolhour_table" EntitySet="Schoolhour_table" />
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDYCOU_REFERENCE_NEWCOURS" Association="Self.FK_STUDYCOU_REFERENCE_NEWCOURS">
+            <End Role="NewCourse_table" EntitySet="NewCourse_table" />
+            <End Role="StudyCourse_table" EntitySet="StudyCourse_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STUDYCOU_STUDYCOUR_STUDENT_" Association="Self.FK_STUDYCOU_STUDYCOUR_STUDENT_">
+            <End Role="Student_table" EntitySet="Student_table" />
+            <End Role="StudyCourse_table" EntitySet="StudyCourse_table" />
+          </AssociationSet>
+          <EntitySet Name="ManageClassroom_V" EntityType="DBWebCCModel.ManageClassroom_V" />
+          <EntitySet Name="ManageFinishedSetCourse_V" EntityType="DBWebCCModel.ManageFinishedSetCourse_V" />
+          <EntitySet Name="ManageLiveDorm_V" EntityType="DBWebCCModel.ManageLiveDorm_V" />
+          <EntitySet Name="ManageManager_V" EntityType="DBWebCCModel.ManageManager_V" />
+          <EntitySet Name="ManageStuChooseCourse_V" EntityType="DBWebCCModel.ManageStuChooseCourse_V" />
+          <EntitySet Name="ManageStudent_V" EntityType="DBWebCCModel.ManageStudent_V" />
+          <EntitySet Name="ManageStuGrade_V" EntityType="DBWebCCModel.ManageStuGrade_V" />
+          <EntitySet Name="ManageTeacher_V" EntityType="DBWebCCModel.ManageTeacher_V" />
+          <EntitySet Name="StudentBeginNewCourse_V" EntityType="DBWebCCModel.StudentBeginNewCourse_V" />
+          <EntitySet Name="StudentFinishedChooseCourse_V" EntityType="DBWebCCModel.StudentFinishedChooseCourse_V" />
+          <EntitySet Name="StudentGetGrade_V" EntityType="DBWebCCModel.StudentGetGrade_V" />
+          <EntitySet Name="TeacherFinishedGetGrade_V" EntityType="DBWebCCModel.TeacherFinishedGetGrade_V" />
+          <EntitySet Name="TeacherFinishedSetCourse_V" EntityType="DBWebCCModel.TeacherFinishedSetCourse_V" />
+          <EntitySet Name="TeacherSetStuGrade_V" EntityType="DBWebCCModel.TeacherSetStuGrade_V" />
+          <EntitySet Name="StudentInfo_V" EntityType="DBWebCCModel.StudentInfo_V" />
+        </EntityContainer>
+        <EntityType Name="ManageClassroom_V">
+          <Key>
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="IDClassroom" />
+          </Key>
+          <Property Name="NumClassroom" Type="Int32" Nullable="false" />
+          <Property Name="PeopleNumClassroom" Type="Int32" />
+          <Property Name="NameBuilding" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumBuilding" Type="Int32" Nullable="false" />
+          <Property Name="CountBuilding" Type="Int32" />
+          <Property Name="IDBuilding" Type="Int32" />
+          <Property Name="IDClassroom" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageFinishedSetCourse_V">
+          <Key>
+            <PropertyRef Name="IDNewCourse" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="TimesectionSchoolhour" />
+            <PropertyRef Name="TimesectionSchoolhourDetail" />
+          </Key>
+          <Property Name="IDNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileCourse" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="StudyTimeCourse" Type="Int32" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="SetTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccommodateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailTeacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NameBuilding" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumBuilding" Type="Int32" Nullable="false" />
+          <Property Name="NumClassroom" Type="Int32" Nullable="false" />
+          <Property Name="TimesectionSchoolhour" Type="Int32" Nullable="false" />
+          <Property Name="TimesectionSchoolhourDetail" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageLiveDorm_V">
+          <Key>
+            <PropertyRef Name="IDLiveDorm" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="NumDorm" />
+            <PropertyRef Name="CountDorm" />
+          </Key>
+          <Property Name="IDLiveDorm" Type="Int32" Nullable="false" />
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GradeStudent" Type="Int32" Nullable="false" />
+          <Property Name="YearsStudent" Type="Int32" />
+          <Property Name="NumDorm" Type="Int32" Nullable="false" />
+          <Property Name="CountDorm" Type="Int32" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ManageManager_V">
+          <Key>
+            <PropertyRef Name="IDArranger" />
+            <PropertyRef Name="NumberArranger" />
+            <PropertyRef Name="NameArranger" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDArranger" Type="Int32" Nullable="false" />
+          <Property Name="NumberArranger" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameArranger" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumArranger" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailArranger" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="LevelAuthority" Type="Int32" Nullable="false" />
+          <Property Name="AgeArranger" Type="Int32" />
+          <Property Name="SexArranger" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ImageArranger" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ManageStuChooseCourse_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NumBuilding" />
+            <PropertyRef Name="NameBuilding" />
+            <PropertyRef Name="NumClassroom" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SetTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NumBuilding" Type="Int32" Nullable="false" />
+          <Property Name="NameBuilding" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumClassroom" Type="Int32" Nullable="false" />
+          <Property Name="AccommodateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageStudent_V">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="LevelAuthority" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="NumDorm" />
+            <PropertyRef Name="CountDorm" />
+          </Key>
+          <Property Name="IDStudent" Type="Int32" Nullable="false" />
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="LevelAuthority" Type="Int32" Nullable="false" />
+          <Property Name="AgeStudent" Type="Int32" />
+          <Property Name="GradeStudent" Type="Int32" Nullable="false" />
+          <Property Name="YearsStudent" Type="Int32" />
+          <Property Name="ImageStudent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NumDorm" Type="Int32" Nullable="false" />
+          <Property Name="CountDorm" Type="Int32" Nullable="false" />
+          <Property Name="OtherLiveDorm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ManageStuGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManageTeacher_V">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumTeacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailTeacher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="LevelAuthority" Type="Int32" Nullable="false" />
+          <Property Name="GradeTeacher" Type="Int32" />
+          <Property Name="SexTeacher" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AgeTeacher" Type="Int32" />
+          <Property Name="ImageTeacher" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentBeginNewCourse_V">
+          <Key>
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDNewCourse" />
+          </Key>
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileCourse" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="StudyTimeCourse" Type="Int32" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SetTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="AccommodateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDNewCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentFinishedChooseCourse_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentGetGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDStudyCourse" />
+          </Key>
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDStudyCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherFinishedGetGrade_V">
+          <Key>
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherFinishedSetCourse_V">
+          <Key>
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="NameTeacher" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="SetTimeNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="IDTeacher" />
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileCourse" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="StudyTimeCourse" Type="Int32" />
+          <Property Name="SetTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+          <Property Name="IDCourse" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherSetStuGrade_V">
+          <Key>
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="NumberCourse" />
+            <PropertyRef Name="NameCourse" />
+            <PropertyRef Name="NatureNewCourse" />
+            <PropertyRef Name="BeginTimeNewCourse" />
+            <PropertyRef Name="GradeStudyCourse" />
+            <PropertyRef Name="NumberTeacher" />
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScoreCourse" Type="Int32" />
+          <Property Name="StateNewCourse" Type="Int32" />
+          <Property Name="NatureNewCourse" Type="Int32" Nullable="false" />
+          <Property Name="BeginTimeNewCourse" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GradeStudyCourse" Type="Int32" Nullable="false" />
+          <Property Name="NumberTeacher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentInfo_V">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+            <PropertyRef Name="NumberStudent" />
+            <PropertyRef Name="NameStudent" />
+            <PropertyRef Name="GradeStudent" />
+            <PropertyRef Name="LevelAuthority" />
+          </Key>
+          <Property Name="IDStudent" Type="Int32" Nullable="false" />
+          <Property Name="NumberStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameStudent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AgeStudent" Type="Int32" />
+          <Property Name="GradeStudent" Type="Int32" Nullable="false" />
+          <Property Name="YearsStudent" Type="Int32" />
+          <Property Name="ImageStudent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDAuthority" Type="Int32" />
+          <Property Name="LevelAuthority" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBWebCCModelStoreContainer" CdmEntityContainer="DBWebCCEntities">
+          <EntitySetMapping Name="Arranger_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Arranger_table">
+              <MappingFragment StoreEntitySet="Arranger_table">
+                <ScalarProperty Name="IDArranger" ColumnName="IDArranger" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="NumberArranger" ColumnName="NumberArranger" />
+                <ScalarProperty Name="NameArranger" ColumnName="NameArranger" />
+                <ScalarProperty Name="EmailArranger" ColumnName="EmailArranger" />
+                <ScalarProperty Name="AgeArranger" ColumnName="AgeArranger" />
+                <ScalarProperty Name="SexArranger" ColumnName="SexArranger" />
+                <ScalarProperty Name="PhoneNumArranger" ColumnName="PhoneNumArranger" />
+                <ScalarProperty Name="PasscodeArranger" ColumnName="PasscodeArranger" />
+                <ScalarProperty Name="ImageArranger" ColumnName="ImageArranger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authority_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Authority_table">
+              <MappingFragment StoreEntitySet="Authority_table">
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="LevelAuthority" ColumnName="LevelAuthority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Building_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Building_table">
+              <MappingFragment StoreEntitySet="Building_table">
+                <ScalarProperty Name="IDBuilding" ColumnName="IDBuilding" />
+                <ScalarProperty Name="NameBuilding" ColumnName="NameBuilding" />
+                <ScalarProperty Name="NumBuilding" ColumnName="NumBuilding" />
+                <ScalarProperty Name="CountBuilding" ColumnName="CountBuilding" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classroom_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Classroom_table">
+              <MappingFragment StoreEntitySet="Classroom_table">
+                <ScalarProperty Name="IDClassroom" ColumnName="IDClassroom" />
+                <ScalarProperty Name="IDBuilding" ColumnName="IDBuilding" />
+                <ScalarProperty Name="NumClassroom" ColumnName="NumClassroom" />
+                <ScalarProperty Name="PeopleNumClassroom" ColumnName="PeopleNumClassroom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Course_table">
+              <MappingFragment StoreEntitySet="Course_table">
+                <ScalarProperty Name="IDCourse" ColumnName="IDCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="ProfileCourse" ColumnName="ProfileCourse" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="StudyTimeCourse" ColumnName="StudyTimeCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dorm_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Dorm_table">
+              <MappingFragment StoreEntitySet="Dorm_table">
+                <ScalarProperty Name="IDDorm" ColumnName="IDDorm" />
+                <ScalarProperty Name="NumDorm" ColumnName="NumDorm" />
+                <ScalarProperty Name="CountDorm" ColumnName="CountDorm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiveDorm_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.LiveDorm_table">
+              <MappingFragment StoreEntitySet="LiveDorm_table">
+                <ScalarProperty Name="IDLiveDorm" ColumnName="IDLiveDorm" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="IDDorm" ColumnName="IDDorm" />
+                <ScalarProperty Name="OtherLiveDorm" ColumnName="OtherLiveDorm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewCourse_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.NewCourse_table">
+              <MappingFragment StoreEntitySet="NewCourse_table">
+                <ScalarProperty Name="IDNewCourse" ColumnName="IDNewCourse" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="IDCourse" ColumnName="IDCourse" />
+                <ScalarProperty Name="IDClassroom" ColumnName="IDClassroom" />
+                <ScalarProperty Name="IDSchoolhour" ColumnName="IDSchoolhour" />
+                <ScalarProperty Name="SetTimeNewCourse" ColumnName="SetTimeNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="AccommodateNewCourse" ColumnName="AccommodateNewCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schoolhour_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Schoolhour_table">
+              <MappingFragment StoreEntitySet="Schoolhour_table">
+                <ScalarProperty Name="IDSchoolhour" ColumnName="IDSchoolhour" />
+                <ScalarProperty Name="TimesectionSchoolhour" ColumnName="TimesectionSchoolhour" />
+                <ScalarProperty Name="TimesectionSchoolhourDetail" ColumnName="TimesectionSchoolhourDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Student_table">
+              <MappingFragment StoreEntitySet="Student_table">
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="AgeStudent" ColumnName="AgeStudent" />
+                <ScalarProperty Name="PasscodeStudent" ColumnName="PasscodeStudent" />
+                <ScalarProperty Name="GradeStudent" ColumnName="GradeStudent" />
+                <ScalarProperty Name="YearsStudent" ColumnName="YearsStudent" />
+                <ScalarProperty Name="ImageStudent" ColumnName="ImageStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyCourse_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.StudyCourse_table">
+              <MappingFragment StoreEntitySet="StudyCourse_table">
+                <ScalarProperty Name="IDStudyCourse" ColumnName="IDStudyCourse" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="IDNewCourse" ColumnName="IDNewCourse" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher_table">
+            <EntityTypeMapping TypeName="DBWebCCModel.Teacher_table">
+              <MappingFragment StoreEntitySet="Teacher_table">
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="AgeTeacher" ColumnName="AgeTeacher" />
+                <ScalarProperty Name="SexTeacher" ColumnName="SexTeacher" />
+                <ScalarProperty Name="GradeTeacher" ColumnName="GradeTeacher" />
+                <ScalarProperty Name="PhoneNumTeacher" ColumnName="PhoneNumTeacher" />
+                <ScalarProperty Name="EmailTeacher" ColumnName="EmailTeacher" />
+                <ScalarProperty Name="PasscodeTeacher" ColumnName="PasscodeTeacher" />
+                <ScalarProperty Name="ImageTeacher" ColumnName="ImageTeacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageClassroom_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageClassroom_V">
+              <MappingFragment StoreEntitySet="ManageClassroom_V">
+                <ScalarProperty Name="IDClassroom" ColumnName="IDClassroom" />
+                <ScalarProperty Name="IDBuilding" ColumnName="IDBuilding" />
+                <ScalarProperty Name="CountBuilding" ColumnName="CountBuilding" />
+                <ScalarProperty Name="NumBuilding" ColumnName="NumBuilding" />
+                <ScalarProperty Name="NameBuilding" ColumnName="NameBuilding" />
+                <ScalarProperty Name="PeopleNumClassroom" ColumnName="PeopleNumClassroom" />
+                <ScalarProperty Name="NumClassroom" ColumnName="NumClassroom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageFinishedSetCourse_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageFinishedSetCourse_V">
+              <MappingFragment StoreEntitySet="ManageFinishedSetCourse_V">
+                <ScalarProperty Name="TimesectionSchoolhourDetail" ColumnName="TimesectionSchoolhourDetail" />
+                <ScalarProperty Name="TimesectionSchoolhour" ColumnName="TimesectionSchoolhour" />
+                <ScalarProperty Name="NumClassroom" ColumnName="NumClassroom" />
+                <ScalarProperty Name="NumBuilding" ColumnName="NumBuilding" />
+                <ScalarProperty Name="NameBuilding" ColumnName="NameBuilding" />
+                <ScalarProperty Name="EmailTeacher" ColumnName="EmailTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="AccommodateNewCourse" ColumnName="AccommodateNewCourse" />
+                <ScalarProperty Name="SetTimeNewCourse" ColumnName="SetTimeNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="StudyTimeCourse" ColumnName="StudyTimeCourse" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="ProfileCourse" ColumnName="ProfileCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="IDNewCourse" ColumnName="IDNewCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageLiveDorm_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageLiveDorm_V">
+              <MappingFragment StoreEntitySet="ManageLiveDorm_V">
+                <ScalarProperty Name="OtherLiveDorm" ColumnName="OtherLiveDorm" />
+                <ScalarProperty Name="CountDorm" ColumnName="CountDorm" />
+                <ScalarProperty Name="NumDorm" ColumnName="NumDorm" />
+                <ScalarProperty Name="YearsStudent" ColumnName="YearsStudent" />
+                <ScalarProperty Name="GradeStudent" ColumnName="GradeStudent" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+                <ScalarProperty Name="IDLiveDorm" ColumnName="IDLiveDorm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageManager_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageManager_V">
+              <MappingFragment StoreEntitySet="ManageManager_V">
+                <ScalarProperty Name="ImageArranger" ColumnName="ImageArranger" />
+                <ScalarProperty Name="SexArranger" ColumnName="SexArranger" />
+                <ScalarProperty Name="AgeArranger" ColumnName="AgeArranger" />
+                <ScalarProperty Name="LevelAuthority" ColumnName="LevelAuthority" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="EmailArranger" ColumnName="EmailArranger" />
+                <ScalarProperty Name="PhoneNumArranger" ColumnName="PhoneNumArranger" />
+                <ScalarProperty Name="NameArranger" ColumnName="NameArranger" />
+                <ScalarProperty Name="NumberArranger" ColumnName="NumberArranger" />
+                <ScalarProperty Name="IDArranger" ColumnName="IDArranger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageStuChooseCourse_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageStuChooseCourse_V">
+              <MappingFragment StoreEntitySet="ManageStuChooseCourse_V">
+                <ScalarProperty Name="IDStudyCourse" ColumnName="IDStudyCourse" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="AccommodateNewCourse" ColumnName="AccommodateNewCourse" />
+                <ScalarProperty Name="NumClassroom" ColumnName="NumClassroom" />
+                <ScalarProperty Name="NameBuilding" ColumnName="NameBuilding" />
+                <ScalarProperty Name="NumBuilding" ColumnName="NumBuilding" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="SetTimeNewCourse" ColumnName="SetTimeNewCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageStudent_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageStudent_V">
+              <MappingFragment StoreEntitySet="ManageStudent_V">
+                <ScalarProperty Name="OtherLiveDorm" ColumnName="OtherLiveDorm" />
+                <ScalarProperty Name="CountDorm" ColumnName="CountDorm" />
+                <ScalarProperty Name="NumDorm" ColumnName="NumDorm" />
+                <ScalarProperty Name="ImageStudent" ColumnName="ImageStudent" />
+                <ScalarProperty Name="YearsStudent" ColumnName="YearsStudent" />
+                <ScalarProperty Name="GradeStudent" ColumnName="GradeStudent" />
+                <ScalarProperty Name="AgeStudent" ColumnName="AgeStudent" />
+                <ScalarProperty Name="LevelAuthority" ColumnName="LevelAuthority" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageStuGrade_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageStuGrade_V">
+              <MappingFragment StoreEntitySet="ManageStuGrade_V">
+                <ScalarProperty Name="IDStudyCourse" ColumnName="IDStudyCourse" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageTeacher_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.ManageTeacher_V">
+              <MappingFragment StoreEntitySet="ManageTeacher_V">
+                <ScalarProperty Name="ImageTeacher" ColumnName="ImageTeacher" />
+                <ScalarProperty Name="AgeTeacher" ColumnName="AgeTeacher" />
+                <ScalarProperty Name="SexTeacher" ColumnName="SexTeacher" />
+                <ScalarProperty Name="GradeTeacher" ColumnName="GradeTeacher" />
+                <ScalarProperty Name="LevelAuthority" ColumnName="LevelAuthority" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="EmailTeacher" ColumnName="EmailTeacher" />
+                <ScalarProperty Name="PhoneNumTeacher" ColumnName="PhoneNumTeacher" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentBeginNewCourse_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.StudentBeginNewCourse_V">
+              <MappingFragment StoreEntitySet="StudentBeginNewCourse_V">
+                <ScalarProperty Name="IDNewCourse" ColumnName="IDNewCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="AccommodateNewCourse" ColumnName="AccommodateNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="SetTimeNewCourse" ColumnName="SetTimeNewCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="StudyTimeCourse" ColumnName="StudyTimeCourse" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="ProfileCourse" ColumnName="ProfileCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentFinishedChooseCourse_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.StudentFinishedChooseCourse_V">
+              <MappingFragment StoreEntitySet="StudentFinishedChooseCourse_V">
+                <ScalarProperty Name="IDStudyCourse" ColumnName="IDStudyCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentGetGrade_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.StudentGetGrade_V">
+              <MappingFragment StoreEntitySet="StudentGetGrade_V">
+                <ScalarProperty Name="IDStudyCourse" ColumnName="IDStudyCourse" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherFinishedGetGrade_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.TeacherFinishedGetGrade_V">
+              <MappingFragment StoreEntitySet="TeacherFinishedGetGrade_V">
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherFinishedSetCourse_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.TeacherFinishedSetCourse_V">
+              <MappingFragment StoreEntitySet="TeacherFinishedSetCourse_V">
+                <ScalarProperty Name="IDCourse" ColumnName="IDCourse" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="SetTimeNewCourse" ColumnName="SetTimeNewCourse" />
+                <ScalarProperty Name="StudyTimeCourse" ColumnName="StudyTimeCourse" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="ProfileCourse" ColumnName="ProfileCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameTeacher" ColumnName="NameTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherSetStuGrade_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.TeacherSetStuGrade_V">
+              <MappingFragment StoreEntitySet="TeacherSetStuGrade_V">
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="NumberTeacher" ColumnName="NumberTeacher" />
+                <ScalarProperty Name="GradeStudyCourse" ColumnName="GradeStudyCourse" />
+                <ScalarProperty Name="BeginTimeNewCourse" ColumnName="BeginTimeNewCourse" />
+                <ScalarProperty Name="NatureNewCourse" ColumnName="NatureNewCourse" />
+                <ScalarProperty Name="StateNewCourse" ColumnName="StateNewCourse" />
+                <ScalarProperty Name="ScoreCourse" ColumnName="ScoreCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="NumberCourse" ColumnName="NumberCourse" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInfo_V">
+            <EntityTypeMapping TypeName="DBWebCCModel.StudentInfo_V">
+              <MappingFragment StoreEntitySet="StudentInfo_V">
+                <ScalarProperty Name="LevelAuthority" ColumnName="LevelAuthority" />
+                <ScalarProperty Name="IDAuthority" ColumnName="IDAuthority" />
+                <ScalarProperty Name="ImageStudent" ColumnName="ImageStudent" />
+                <ScalarProperty Name="YearsStudent" ColumnName="YearsStudent" />
+                <ScalarProperty Name="GradeStudent" ColumnName="GradeStudent" />
+                <ScalarProperty Name="AgeStudent" ColumnName="AgeStudent" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="NumberStudent" ColumnName="NumberStudent" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

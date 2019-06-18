@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WebCC.Authority_table>
+
+@{
+    ViewBag.Title = "ManageAuthority";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageAuthority</h2>
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: { auth: $('#Auth_level').val() },
+                url: "ManageAuthority_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+        });
+    })
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加权限"/>
+</p>
+<div id="elementID" class="avgrund-popup" >
+    <style>
+        .Internal_Style {
+            text-align:center;
+            border-radius:6px;
+        }
+        .Internal_Style input{
+            font-family:'Microsoft YaHei';
+            font-size:14px;
+            font-weight:800;
+            margin:20px 30px;
+            border-radius: 6px;
+        }
+    </style>
+    <div class="Internal_Style">
+        <input type="number" id="Auth_level" placeholder="请输入权限等级" />
+        <p>
+            <input type="button" id="Add_Ok" value="添加权限" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelAuthority)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDAuthority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelAuthority)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

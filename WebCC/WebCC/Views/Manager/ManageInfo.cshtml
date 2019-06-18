@@ -1,0 +1,99 @@
+﻿@model WebCC.ManageManager_V
+
+@{
+    ViewBag.Title = "ManageInfo";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageInfo</h2>
+
+<div>
+    <h4>ManageManager_V</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDAuthority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDAuthority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelAuthority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelAuthority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AgeArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgeArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SexArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SexArranger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageArranger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageArranger)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

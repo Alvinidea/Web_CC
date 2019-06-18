@@ -1,0 +1,464 @@
+﻿
+@{
+    ViewBag.Title = "TeacherBeginSetNewCourse_jsonGet";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+<script>
+    //文档加载的时候 设置
+    function initLoad() {//动态获取 位置信息
+        var top = $('.Father_Show').offset().top;
+        var left = $('.Father_Show').offset().left;
+        var height = $('.Father_Show').height;
+        var width = $('.Father_Show').width;
+        //设置绝对位置
+        $(".first_Show").css("top", top + 20);
+        $(".first_Show").css("left", left + 20);
+        $(".second_Show").css("top", top + 40);
+        $(".second_Show").css("left", left + 40);
+        //设置宽和高
+        $(".first_Show").css("width", width);
+        $(".first_Show").css("height", height);
+        $(".second_Show").css("width", width);
+        $(".second_Show").css("height", height);
+        //设置层叠
+        $(".first_Show").css("z-index", "20");
+        $(".second_Show").css("z-index", "10");
+    }
+
+    //Jquery的ready函数
+    $(function () {
+        //文档加载的时候           设置div的位置信息
+        initLoad();
+        //文档加载的时候           获取可开设课程信息
+        $.ajax({
+            url: '@Url.Action("TeacherBeginSetNewCourse_jsonGet", "Teacher")',
+            type: 'post',
+            data: {
+                currentPage: '1'
+            },
+            datatype: 'json',
+            success: success,
+            error:error
+        });
+
+        //文档加载的时候           获取已经开设课程信息
+        $.ajax({
+                url: '@Url.Action("TeacherBeginSetNewCourse_jsonGet_hasBeenSet", "Teacher")',
+                type: 'post',
+                data: {         //需要传到服务器的信息
+                    currentPage2: '1'
+                 },
+                datatype: 'json',
+                success: success_hasBeenSet,
+                error: error
+            });
+
+        ////文档加载的时候         获取 可开设课程 信息的Succees函数
+        function success(data) {
+            var arr = [];
+            arr.push('<table class="table"><tr>'
+                + '<th>课程ID</th>'
+                + '<th>课程编号</th>'
+                + '<th>课程名称</th > '
+                + '<th>学分</th>'
+                + '<th>学时</th > '
+                + '<th>课程简介</th>'
+                + '<th></th> <th></th></tr > ');
+            $.each(data, function (i, item) {
+                arr.push('<tr><td>' + item.IDCourse
+                    + '</td><td>' + item.NumberCourse
+                    + '</td><td>' + item.NameCourse
+                    + '</td><td>' + item.ScoreCourse
+                    + '</td><td>' + item.StudyTimeCourse
+                    + '</td><td>' + item.ProfileCourse
+                    + '</td><td><input class="btn btn-default" type="button" data-id-info="1" value="开课" onclick="addTr(' + item.IDCourse + ')" />'
+                    + '</td></tr>');
+            })
+            $("#info_table").html(
+                arr.join("")
+            );
+        }
+        //文档加载的时候         获取 可开设课程 信息的Succees函数
+        function success_hasBeenSet(data) {
+            //服务器发回已开课程的信息
+            //若已开过课程 已经设置过此课程!!! 请不要再次设置
+            var arr = [];
+            $.each(data, function (i, item) {
+                arr.push('<tr data-id-info="' + item.IDCourse + '"><td>' + item.IDCourse
+                    + '</td><td>' + item.NumberCourse
+                    + '</td><td>' + item.NameCourse
+                    + '</td><td>' + item.ScoreCourse
+                    + '</td><td>' + item.StudyTimeCourse
+                    + '</td><td>' + item.ProfileCourse
+                    + '</td><td>' + item.SetTimeNewCourse
+                    + '</td><td>' + item.BeginTimeNewCourse
+                    + '</td><td>' + item.StateNewCourse
+                    + '</td><td>' + item.NatureNewCourse
+                    + '</td><td><input class="btn btn-default" type="button" data-id-info="" value="取消开设此课程" onclick="deleteTr(' + item.IDCourse + ')" />'
+                    + '</td></tr>');
+            })
+            //添加在已开设课程table后面
+            $("#add_info_table_checked").append(
+                arr.join("")
+            );
+        }
+        //文档加载的时候 获取信息的error函数
+        function error(e, data) {
+            alert('错误（可能是EF的循环引用）！');
+        }
+        //可设置课程的分页处理
+        $("#Pagination").pagination({
+            currentPage: 1,
+            totalPage: @ViewBag.totalPage,//获取可开设课程总页数
+            isShow: true,
+            count: 7,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function (currentPage) {
+                $.post(
+                    '@Url.Action("TeacherBeginSetNewCourse_jsonGet", "Teacher")',
+                    { currentPage: currentPage },
+                        success);
+            }
+        });
+        @*//已经设置课程的分页处理
+            ???????  不能用   问题暂时没找出来
+        $("#Pagination2").pagination({
+            currentPage: 1,
+            totalPage: @ViewBag.totalPage2,//获取已开设课程总页数
+            isShow: true,
+            count: 7,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function (currentPage) {
+                $.post(
+                    '@Url.Action("TeacherBeginSetNewCourse_jsonGet_hasBeenSet", "Teacher")',
+                    { currentPage: currentPage },
+                    success_hasBeenSet);
+            }
+        });*@
+
+        //第二个DIV的确定操作
+        //需要 IDCourse  IDCourse通过 #finishSet 的data-id-info属性传了过来
+        $("#finishSet").click(function () {
+             //增加
+            //这儿需要改变
+            $.ajax({
+                url: '@Url.Action("TeacherBeginSetNewCourse_jsonSet_add", "Teacher")',
+                type: 'post',
+                data: {//需要传到服务器的信息
+                    IDCourse: $("#IDCourse").val(),
+                    IDSchoolhour: $("#IDSchoolhour").val(),
+                    IDClassroom: $("#IDClassroom").val(),
+                    BeginTimeNewCourse: $("#BeginTimeNewCourse").val(),
+                    StateNewCourse: $("#StateNewCourse").val(),
+                    AccommodateNewCourse: $("#AccommodateNewCourse").val(),
+                    NatureNewCourse: $("#NatureNewCourse").val()
+                    //信息
+                },
+                datatype: 'json',
+                success: function (data) {
+                    //服务器发回已开课程的信息
+                    //若已开过课程 已经设置过此课程!!! 请不要再次设置
+                    if (data.IDCourse == 0)
+                    {
+                        alert("您已经设置过此课程!!! 请不要再次设置");
+                        //   显示第一个DIV
+                        changeToFirstShow();
+                        return;
+                    }
+                    var arr = [];
+                    $.each(data, function (i, item) {
+                        arr.push('<tr data-id-info="' + item.IDCourse +'"><td>' + item.IDCourse
+                            + '</td><td>' + item.NumberCourse
+                            + '</td><td>' + item.NameCourse
+                            + '</td><td>' + item.ScoreCourse
+                            + '</td><td>' + item.StudyTimeCourse
+                            + '</td><td>' + item.ProfileCourse
+                            + '</td><td>' + item.SetTimeNewCourse
+                            + '</td><td>' + item.BeginTimeNewCourse
+                            + '</td><td>' + item.StateNewCourse
+                            + '</td><td>' + item.NatureNewCourse
+                            + '</td><td><input class="btn btn-default" type="button" data-id-info="" value="取消开设此课程" onclick="deleteTr(' + item.IDCourse + ')" />'
+                            + '</td></tr>');
+                    })
+                    $("#add_info_table_checked").append(
+                        arr.join("")
+                    );
+                },
+                error: function (e)
+                {
+                    alert(e.message);
+                }
+            });
+            //第二DIV提交成功   显示第一个DIV
+            changeToFirstShow();
+        });
+        $("#cancelSet").click(function () {
+            //仅仅显示第一个DIV
+            changeToFirstShow();
+        });
+    })
+
+    //点击选课按钮运行的事件
+    function addTr(IDCourse) {
+        if (confirm('确定开课？') == false) {//确认框
+            return;
+        }
+        //将IDCourse 传给 secondShow页面的自定义 data-id-info 属性
+        $("#finishSet").attr("data-id-info", IDCourse);
+
+        //获取该课程的信息 并且判断是否已经设置
+        $.ajax({
+            url: '@Url.Action("TeacherBeginSetNewCourse_jsonGet_choose", "Teacher")',
+            type: 'post',
+            data: {
+                IDCourse: $("#finishSet").attr('data-id-info')
+            },
+            datatype: 'json',
+            success: function (data) {
+                if (data.IDCourse == 0) {
+                    alert("您已经设置过此课程!!! 请不要再次设置");
+                    //显示第一个DIV
+                    changeToFirstShow();
+                    return;
+                }
+                $("#NameCourse").val(data.NameCourse);
+                $("#NumberCourse").val(data.NumberCourse);
+                $("#IDCourse").val(data.IDCourse);
+                $("#ScoreCourse").val(data.ScoreCourse);
+                $("#StudyTimeCourse").val(data.StudyTimeCourse);
+                $("#ProfileCourse").val(data.ProfileCourse);
+            },
+            error: function (e)
+            {
+                alert(e.message);
+            }
+        });
+        //true的时候 将secondShow显示出来 选课信息在secondShow DIV中显示
+        changeToSecondShow();
+    }
+    //点击退选选课按钮运行的事件
+    function deleteTr(id) {
+        if (confirm('确定取消开设此课程？') == false)
+        {//确认框
+            return;
+        }
+        //删除
+        $.ajax({
+            url: '@Url.Action("TeacherBeginSetNewCourse_jsonSet_delete", "Teacher")',
+            type: 'post',
+            data: {
+                IDCourse: id
+            },
+            datatype: 'json',
+            success: function (data) {
+                if (data.msg == 0) {
+                    alert("您未开设此课程!!! ");
+                    return;
+                } else {
+                    alert("课程取消成功!!! ");
+                    //通过tr的自定义属性 删除该行
+                    $('tr[data-id-info=' + data.IDCourse + ']').remove();
+                }
+            },
+            error: function (e) {
+                alert(e.message);
+            }
+        });
+    }
+    //显示secondShow
+    function changeToSecondShow() {
+        $(".first_Show").css("z-index", "10");
+        $(".second_Show").css("z-index", "20");
+    }
+    //显示firstShow
+    function changeToFirstShow() {
+        $(".first_Show").css("z-index", "20");
+        $(".second_Show").css("z-index", "10");
+    }
+</script>
+<style>
+    .Father_Show {
+        background-color: #E6E6FA;
+        height: 680px;
+        width: 100%;
+        margin: auto 0px;
+    }
+    .first_Show {
+        z-index: 20;
+        background-color: skyblue;
+        position: absolute;
+        height: 610px;
+        width: 1200px;
+        border-radius: 6px;
+        padding: 20px 25px;
+        overflow: scroll;
+        
+    }
+    .second_Show {
+        z-index: 10;
+        background-color: #B4EEB4;
+        position: absolute;
+        height: 610px;
+        width: 1200px;
+        border-radius: 6px;
+        padding: 40px 25px;
+    }
+</style>
+<div class="Father_Show">
+    <div class="first_Show">
+        <div class="table" id="info_table">
+        </div>
+        <div class="box">
+            <div id="Pagination" class="page fl"></div>
+        </div>
+                    <p><hr /></p>
+        <div class="table" id="info_table_checked">
+            <h2>已开课程</h2>
+            <table id="add_info_table_checked" class="table">
+                <tr>
+                    <th>课程ID</th>
+                    <th>课程编号</th>
+                    <th>课程名称</th>
+                    <th>学分</th>
+                    <th>学时</th>
+                    <th>课程简介</th>
+
+                    <th>开设时间</th>
+                    <th>开始上课时间</th>
+                    <th>课程状态</th>
+                    <th>课程性质</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="second_Show">
+        <style>
+            .second_Show_left {
+                padding: 30px;
+                width: 32%;
+                height: 70%;
+                float: left;
+                border-radius: 10px;
+            }
+            .second_Show_right {
+                padding: 30px;
+                width: 65%;
+                height: 70%;
+                float: right;
+                border-radius: 10px;
+            }
+            .second_Show_footer {
+                margin:50px,0px,0px,0px;
+                clear: both;
+                width: 100%;
+                height: 22%;
+                padding: 50px;
+                text-align: center;
+                border-radius: 10px;
+            }
+        </style>
+        <div class="second_Show_left">
+            <table class="table">
+                <caption><h2>课程信息</h2></caption>
+                <tr>
+                    <td>课程名称:</td>
+                    <td><input type="text" id="NameCourse" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>课程编号:</td>
+                    <td><input type="text" id="NumberCourse" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>课程ID：</td>
+                    <td><input type="text" id="IDCourse" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>课程学分：</td>
+                    <td><input type="text" id="ScoreCourse" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>课程学时：</td>
+                    <td><input type="text" id="StudyTimeCourse" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>课程介绍：</td>
+                    <td><input type="text" id="ProfileCourse" readonly="readonly" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="second_Show_right">
+            <table class="table">
+                <caption><h2>开设信息</h2></caption>
+                <tr>
+                    <td>课程IDClassroom:</td>
+                    <td>
+                        <select name="IDClassroom" id="IDClassroom" class="xla_k">
+                            @foreach (int str in ViewBag.Classroom as List<int>)
+                            {
+                                <option value="@str">@str</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程IDSchoolhour:</td>
+                    <td>
+                        <select name="IDSchoolhour" id="IDSchoolhour" class="xla_k">
+                            @foreach (int str in ViewBag.Schooltime as List<int>)
+                             {
+                                <option value="@str">@str</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程BeginTimeNewCourse：</td>
+                    <td><input type="datetime" id="BeginTimeNewCourse"  /></td>
+                </tr>
+                <tr>
+                    <td>课程StateNewCourse：</td>
+                    <td>
+                        <select name="StateNewCourse" id="StateNewCourse" class="xla_k">
+                            <option value="1">未开始</option>
+                            <option value="2">正在进行</option>
+                            <option value="3">暂停</option>
+                            <option value="4">结束 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程性质NatureNewCourse：</td>
+                    <td>
+                        <select name="NatureNewCourse" id="NatureNewCourse" class="xla_k">
+                            <option value="11" selected>公共必修</option>
+                            <option value="12">专业必修</option>
+                            <option value="13">公共选修</option>
+                            <option value="14">专业选修</option>
+                            <option value="21">公共必修网络</option>
+                            <option value="22">专业必修网络</option>
+                            <option value="23">公共选修网络</option>
+                            <option value="24">专业选修网络</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程容纳人数AccommodateNewCourse：</td>
+                    <td><input type="number" id="AccommodateNewCourse" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="second_Show_footer">
+            <input type="button" id="finishSet" data-id-info="" class="btn btn-primary" value="确定" />
+            <input type="button" id="cancelSet" class="btn btn-primary" value="取消" />
+        </div>
+    </div>
+</div>

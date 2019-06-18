@@ -1,0 +1,156 @@
+﻿@model IEnumerable<WebCC.ManageLiveDorm_V>
+
+@{
+    ViewBag.Title = "ManageLiveDorm";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageLiveDorm</h2>
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    IDStudent: $('#IDStudent').val(),
+                    IDDorm: $('#IDDorm').val(),
+                    OtherLiveDorm: $('#OtherLiveDorm').val()
+                },
+                url: "ManageLiveDorm_Add",
+                datatype: "Json",
+                success: function (data) {
+                    alert(data.msg);
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+            $('#IDStudent').val("");
+            $('#IDDorm').val("");
+            $('#OtherLiveDorm').val("")
+        });
+
+
+        $("#Pagination").pagination({
+            currentPage: 1,
+            totalPage: 16,
+            isShow: true,
+            count: 7,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function (Current) {
+                $("#current3").text(Current)
+            }
+        });
+    })
+
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加学生住宿信息" />
+</p>
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 10px 20px;
+                border-radius: 6px;
+            }
+    </style>
+    <div class="Internal_Style">
+        <input type="number" id="IDStudent" placeholder="请输入学生ID" required="required" />
+        <input type="number" id="IDDorm" placeholder="请输入宿舍ID" required="required" />
+        <input type="text" id="OtherLiveDorm" placeholder="请输入备注信息" required="required" />
+        <p>
+            <input type="button" id="Add_Ok" value="确认添加学生住宿信息" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDLiveDorm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearsStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumDorm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountDorm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherLiveDorm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDLiveDorm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradeStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearsStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumDorm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountDorm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherLiveDorm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    <div class="box">
+        <div id="Pagination" class="page fl"></div>
+    </div>
+</div>

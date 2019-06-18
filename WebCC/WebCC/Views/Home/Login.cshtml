@@ -1,0 +1,73 @@
+﻿@model WebCC.Models.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <title>Login</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        <link href="~/Content/CSS/Login.css" rel="stylesheet" />
+    <div class="Login_Header">
+        <div name="Login_Header_Nav">            
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active">@Html.ActionLink("主页", "Index", "Home")</li>
+            </ul>
+        </div>
+    </div>
+<div id="iframe-wrap">
+    <div class="Login_Body">
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <div class="Login_LogoHeader">
+                        <h2>Login</h2>
+                    </div>
+                    <hr />
+                    <div class="Login_ID">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">ID</span>
+                            @Html.TextBoxFor(x => x.ID, "", new { @class = "form-control", placeholder = "用户名" })
+                        </div>
+                    </div>
+                    <div class="Login_Pwd">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">密码</span>
+                            @Html.PasswordFor(x => x.PassCode, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="Login_radio">
+
+                        <lebel>
+                            <input type="radio" name="STM" value="1" />
+                            <span class="text-info">管理员</span>
+                        </lebel>
+                        <lebel>
+                            <input type="radio" name="STM" value="2" checked />
+                            <span class="text-info">教师</span>
+                        </lebel>
+                        <lebel>
+                            <input type="radio" name="STM" value="3" />
+                            <span class="text-info">学生</span>
+                        </lebel>
+                    </div>
+                    <div class="Login_submit">
+                        <input type="submit" value="Login" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+</html>

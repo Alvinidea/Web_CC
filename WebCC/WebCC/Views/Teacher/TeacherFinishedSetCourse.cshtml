@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebCC.TeacherFinishedSetCourse_V>
+
+@{
+    ViewBag.Title = "TeacherFinishedSetCourse";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<h2>已开课程：</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudyTimeCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDTeacher)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudyTimeCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatureNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDTeacher)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ModifyPwd";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<style>
+    .Login_Body {
+        width: 600px;
+        height: 800px;
+        margin: 0 auto;
+        padding: 100px 80px 30px 80px;
+    }
+
+    .Login_LogoHeader {
+        text-align: center;
+        height: 80px;
+    }
+
+    .Login_Pwd {
+        height: 80px;
+    }
+
+    .Login_Pwd2 {
+        height: 80px;
+    }
+
+    .Login_Pwd3 {
+        height: 80px;
+    }
+
+    .Login_submit {
+        text-align: center;
+        height: 80px;
+    }
+</style>
+
+<script src="~/Scripts/JS/InputValidate.js"></script>
+<script src="~/Scripts/JS/ModifyPwd.js"></script>
+<div class="Login_Body">
+
+@using (Html.BeginForm("ModifyPwd", "Teacher", FormMethod.Post, new { id = "submitForm" }))
+{
+        <div class="form-horizontal">
+            <div class="Login_LogoHeader">
+                <h2 style="font-family:'Microsoft YaHei'">密码修改</h2>
+            </div>
+            <hr />
+            <div class="Login_Pwd">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Old Passcode</span>
+                    <input name="oldPwd" type="password" id="old_Pwd1" class="form-control" , placeholder="旧密码" />
+                </div>
+                <span id="old_Tip_Pwd1"></span>
+            </div>
+            <div class="Login_Pwd2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">New Passcode</span>
+                    <input name="firstPwd" type="password" id="first_Pwd2" class="form-control" , placeholder="新密码" />
+                </div>
+                <span id="first_Tip_Pwd2"></span>
+            </div>
+            <div class="Login_Pwd3">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">New Passcode repeat</span>
+                    <input name="secondPwd" type="password" id="second_Pwd3" class="form-control" , placeholder="新密码" />
+                </div>
+                <span id="second_Tip_Pwd3"></span>
+            </div>
+            <div class="Login_submit">
+                <input type="button" id="student_submit_Pwd" value="Modify" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+</div>
+

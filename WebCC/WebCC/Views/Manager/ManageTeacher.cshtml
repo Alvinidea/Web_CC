@@ -1,0 +1,175 @@
+﻿@model IEnumerable<WebCC.ManageTeacher_V>
+
+@{
+    ViewBag.Title = "ManageTeacher";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageTeacher</h2>
+
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+
+                    IDAuthority: $('#Auth_ID').val(),
+                    NumberTeacher: $('#NumberTeacher').val(),
+                    NameTeacher: $('#NameTeacher').val(),
+                    AgeTeacher: $('#AgeTeacher').val(),
+                    SexTeacher: $('#SexTeacher').val(),
+                    GradeTeacher: $('#GradeTeacher').val(),
+                    PhoneNumTeacher: $('#PhoneNumTeacher').val(),
+                    EmailTeacher: $('#EmailTeacher').val(),
+                    PasscodeTeacher: $('#PasscodeTeacher').val()
+                },
+                url: "ManageTeacher_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+            $('#Auth_ID').val("");
+            $('#NumberTeacher').val("");
+            $('#NameTeacher').val("");
+            $('#AgeTeacher').val("");
+            $('#SexTeacher').val("");
+            $('#GradeTeacher').val("");
+            $('#PhoneNumTeacher').val("");
+            $('#EmailTeacher').val("");
+            $('#PasscodeTeacher').val("");
+        });
+    })
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加教师" />
+</p>
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 4px 20px;
+                border-radius: 6px;
+            }
+    </style>
+    <div class="Internal_Style">
+        <input type="number" id="Auth_ID" placeholder="请输入权限ID" required="required" />
+        <input type="text" id="NumberTeacher" placeholder="请输入管理编号" required="required" />
+        <input type="text" id="NameTeacher" placeholder="请输入姓名" required="required" />
+        <input type="email" id="EmailTeacher" placeholder="请输入Email" required="required" />
+        <input type="number" id="AgeTeacher" placeholder="请输入年龄" required="required" />
+        <input type="text" id="SexTeacher" placeholder="请输入性别" required="required" />
+        <input type="tel" id="PhoneNumTeacher" placeholder="请输入手机号" required="required" />
+        <input type="number" id="GradeTeacher" placeholder="请输入学位" required="required" />
+        <input type="text" id="PasscodeTeacher" placeholder="请输入密码" value="000000" required="required" />
+        <p>
+            <input type="button" id="Add_Ok" value="添加教师" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SexTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageTeacher)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDAuthority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LevelAuthority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SexTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgeTeacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageTeacher)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

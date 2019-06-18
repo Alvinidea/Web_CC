@@ -1,0 +1,146 @@
+﻿@model IEnumerable<WebCC.Dorm_table>
+
+@{
+    ViewBag.Title = "ManageDorm";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageDorm</h2>
+
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    num: $('#Dorm_Num').val(),
+                    mateNum: $('#Dorm_MateNum').val()
+                },
+                url: "ManageDorm_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+            $('#Dorm_Num').val("");
+            $('#Dorm_MateNum').val("");
+        });
+
+        $("#Pagination").pagination({
+            currentPage: 1,
+            totalPage: @ViewBag.totalPage,
+            isShow: true,
+            count: 7,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function (currentPage) {
+                //获取服务器信息
+                //这儿设计的有问题
+                @*window.location = '@Url.Action("ManageDorm", "Manager")' + '?currentpage=' + currentPage;
+
+                $('#Pagination1').text(currentPage);*@
+                $.get(
+                    '@Url.Action("ManageDorm", "Manager")',
+                    { currentPage: currentPage },
+                    function (data) {
+                        var arr = [];
+                        arr.push('<table class="table"><tr><th>IDDorm</th><th>NumDorm</th><th>CountDorm</th><th></th></tr>');
+                        $.each(data,function (i,item)
+                        {
+                            arr.push('<tr><td>'+item.IDDorm+'</td><td>'+item.NumDorm+'</td><td>'+item.CountDorm+'</td><td>Edit</td></tr>');
+                        })
+                        $("#Dorm_table").html(
+                            arr.join("")
+                        );
+                    });
+            }
+        });
+    })
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加宿舍" />
+</p>
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 10px 25px;
+                border-radius: 6px;
+            }
+    </style>
+    <div class="Internal_Style">
+        <input type="number" id="Dorm_Num" placeholder="请输入宿舍号" required="required" autofocus="autofocus"/>
+        <input type="number" id="Dorm_MateNum" placeholder="请输入宿舍人数" required="required"/>
+        <p>
+            <input type="button" id="Add_Ok" value="添加宿舍" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<div id="Dorm_table">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDDorm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumDorm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountDorm)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDDorm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumDorm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountDorm)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <div class="box">
+        <div id="Pagination" class="page fl"></div>
+    </div>
+    <div class="box">
+        <div id="Pagination1" class="page fl"></div>
+    </div>
+</div>

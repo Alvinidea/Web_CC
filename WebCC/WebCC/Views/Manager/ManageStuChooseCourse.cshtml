@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebCC.ManageStuChooseCourse_V>
+
+@{
+    ViewBag.Title = "ManageStuChooseCourse";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageStuChooseCourse</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameStudent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumClassroom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccommodateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeStudyCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDStudyCourse)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameStudent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumClassroom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccommodateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatureNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradeStudyCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDStudyCourse)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

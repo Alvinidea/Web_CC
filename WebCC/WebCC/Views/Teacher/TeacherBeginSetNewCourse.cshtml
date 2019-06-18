@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "TeacherBeginSetNewCourse";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<h2>TeacherBeginSetNewCourse</h2>
+<script>
+    $(function () {
+        $("#Submit").click(function () {
+            if (!confirm("确定添加？"))
+            {
+                return;
+            }
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "post",
+                //提交的网址
+                url: "TeacherBeginSetNewCourse_Post",
+                //提交的数据
+                data: {
+                    IDClassroom: $("#IDClassroom").val(),
+                    IDCourse: $("#IDCourse").val(),
+                    IDSchoolhour: $("#IDSchoolhour").val(),
+                    StateNewCourse: $("#StateNewCourse").val(),
+                    NatureNewCourse: $("#NatureNewCourse").val(),
+                    AccommodateNewCourse: $("#AccommodateNewCourse").val()
+                },
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                //在请求之前调用的函数
+                //成功返回之后调用的函数             
+                success: function (data) {
+                    console.log(data);
+                    alert(data.msg);
+                    //$("#msg").html(decodeURI(data));
+                },
+                //调用执行后调用的函数
+                complete: function (XMLHttpRequest, textStatus) {
+                    alert(data.msg);
+                   
+                    alert(XMLHttpRequest.responseText);
+                    alert(textStatus);
+                    //HideLoading();
+                },
+                //调用出错执行的函数
+                error: function (data, e) {
+                    console.log(data);
+                    console.log(e);
+                    alert(data.msg);
+                    //请求出错处理
+                }
+            });
+        });
+    })
+ 
+</script>
+<div id="msg">
+
+</div>
+<style>
+    #FormCreateCourse {
+        width: 600px;
+        height: 400px;
+        margin: 0px auto;
+    }
+    #FormCreateCourse select{
+        margin:10px 50px;
+    }
+        #FormCreateCourse td{
+            margin: 5px 50px;
+            padding:5px 10px;
+        }
+</style>
+<div class="form-horizontal">
+    <div id="FormCreateCourse">
+        <div class="panel panel-info">
+            <div class="panel-heading">开设课程</div>
+            <table>
+                <tr>
+                    <td>教室信息：</td>
+                    <td>
+                        <select name="IDClassroom" id="IDClassroom" class="xla_k">
+                            @foreach (int str in ViewBag.Classroom as List<int>)
+            {
+                                <option value="@str">@str</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程ID：</td>
+                    <td>
+                        <select name="IDCourse" id="IDCourse" class="xla_k">
+                            @foreach (int str in ViewBag.Course as List<int>)
+            {
+                                <option value="@str">@str</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>具体上课时间：</td>
+                    <td>
+                        <select name="IDSchoolhour" id="IDSchoolhour" class="xla_k">
+                            @foreach (int str in ViewBag.Schooltime as List<int>)
+            {
+                                <option value="@str">@str</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> 课程状态：</td>
+                    <td>
+                        <select name="StateNewCourse" id="StateNewCourse" class="xla_k">
+                            <option value="1">未开始</option>
+                            <option value="2">正在进行</option>
+                            <option value="3">暂停</option>
+                            <option value="4">结束 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程性质：</td>
+                    <td>
+                        <select name="NatureNewCourse" id="NatureNewCourse" class="xla_k">
+                            <option value="11" selected>公共必修</option>
+                            <option value="12">专业必修</option>
+                            <option value="13">公共选修</option>
+                            <option value="14">专业选修</option>
+                            <option value="21">公共必修网络</option>
+                            <option value="22">专业必修网络</option>
+                            <option value="23">公共选修网络</option>
+                            <option value="24">专业选修网络</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>课程容纳量：</td>
+                    <td>
+                        <input name="AccommodateNewCourse" type="number" class="form-control" ,max="150" placeholder="容纳人数" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="button" id="Submit" value="提交" class="btn btn-primary"/>
+                    </td>
+                </tr>              
+            </table>
+        </div>
+    </div>
+</div>

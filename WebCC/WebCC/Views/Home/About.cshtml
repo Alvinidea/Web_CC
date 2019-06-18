@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/SFQ/navsite.css" rel="stylesheet" />
+<link href="~/Content/SFQ/font-awesome.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            var trigger = $('.hamburger'),
+                overlay = $('.overlay'),
+                isClosed = false;
+            trigger.click(function () {
+                hamburger_cross();
+            });
+            function hamburger_cross() {
+                if (isClosed == true) {
+                    overlay.hide();
+                    trigger.removeClass('is-open');
+                    trigger.addClass('is-closed');
+                    isClosed = false;
+                } else {
+                    overlay.show();
+                    trigger.removeClass('is-closed');
+                    trigger.addClass('is-open');
+                    isClosed = true;
+                }
+            }
+            $('[data-toggle="offcanvas"]').click(function () {
+                $('#wrapper').toggleClass('toggled');
+            });
+    });
+    </script>
+
+
+<nav class="navbar navbar-default navbar-fixed-top selfnav">
+    <div class="container">
+        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+    </div>
+</nav>
+
+
+<div id="wrapper" class="col-lg-12 col-md-12">
+    <div class="overlay"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#"></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-windows"></i> DotNet技术 <span class="caret"></span></a>
+                <ul id="bbslist1" class="dropdown-menu" role="menu">
+                    <!--<li><a href="#">#</a></li>-->
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-database"></i> 数据库技术 <span class="caret"></span></a>
+                <ul id="bbslist2" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-skyatlas"></i> 云计算 <span class="caret"></span></a>
+                <ul id="bbslist3" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-wifi"></i> 计算机网络 <span class="caret"></span></a>
+                <ul id="bbslist4" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-html5"></i> Web前端 <span class="caret"></span></a>
+                <ul id="bbslist5" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-apple"></i> iOS开发 <span class="caret"></span></a>
+                <ul id="bbslist6" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-android"></i> Android开发 <span class="caret"></span></a>
+                <ul id="bbslist7" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-linux"></i> Linux运维 <span class="caret"></span></a>
+                <ul id="bbslist8" class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-github-alt"></i> IT人生 <span class="caret"></span></a>
+                <ul id="bbslist9" class="dropdown-menu" role="menu"></ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+///////////////////////////////////暂时保存
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-info"><a>通知</a></li>
+</ul>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        权限信息 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("权限信息", "ManageAuthority", "Manager")</li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        用户信息 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("个人信息", "ManageInfo", "Manager")</li>
+        <li>@Html.ActionLink("管理员信息", "ManageManager", "Manager")</li>
+        <li>@Html.ActionLink("教师信息", "ManageTeacher", "Manager")</li>
+        <li>@Html.ActionLink("学生信息", "ManageStudent", "Manager")</li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        课程信息 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("上课时间信息", "ManageSchoolhour", "Manager")</li>
+        <li>@Html.ActionLink("课程信息", "ManageCourse", "Manager")</li>
+        <li>@Html.ActionLink("已开设课程信息", "ManageFinishedSetCourse", "Manager")</li>
+        <li>@Html.ActionLink("学生选课信息", "ManageStuChooseCourse", "Manager")</li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        成绩信息 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("学生成绩单", "ManageStuGrade", "Manager")</li>
+        <li>@Html.ActionLink("学生挂科信息", "ManageStuGrade", "Manager")</li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        后勤信息 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("宿舍信息", "ManageDorm", "Manager")</li>
+        <li>@Html.ActionLink("住宿信息", "ManageLiveDorm", "Manager")</li>
+        <li>@Html.ActionLink("教学楼信息", "ManageBuilding", "Manager")</li>
+        <li>@Html.ActionLink("教室信息", "ManageClassroom", "Manager")</li>
+    </ul>
+</div>

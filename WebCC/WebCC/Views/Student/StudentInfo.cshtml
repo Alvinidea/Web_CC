@@ -1,0 +1,85 @@
+﻿@model WebCC.StudentInfo_V
+@{
+    ViewBag.Title = "学生个人信息";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+<link href="~/Content/CSS/Info.css" rel="stylesheet" />
+
+<div class="Info_Interduce_User">
+    <h2> Hello @Session["LoginedName"] 个人信息</h2>
+
+    <div class="Info_Body">
+        <div class="Info_left">
+            <div class="Info_image_show">
+                <a>
+                    <img src="~/Content/Images/test.jpg" alt="这个山谷服装鞋子" />
+                </a>
+            </div>
+            <div class="Info_ulli">
+                <ul>
+                    <li><a href="StudentInfo">个人信息</a></li>
+                    <li><a>修改信息</a></li>
+                    <li><a>我的收藏</a></li>
+                    <li><a>我的文章</a></li>
+                    <li><a>我的关注</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Info_Right">
+            <div class="Info_Detail">
+                <div class="Info_imageRight">
+                    <div class="Info_image_show">
+                        <a>
+                            <img src="~/Content/Images/test.jpg" alt="这个山谷服装鞋子" />
+                        </a>
+                        <button type="button" class="btn btn-primary" id="Info_ChangeImage">
+                            改变形象
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <table>
+                        <caption><h2>个人信息</h2></caption>
+                        <tr>
+                            <td>学生ID: </td>
+                            <td> @Html.DisplayFor(model => model.IDStudent)</td>
+                        </tr>
+                        <tr>
+                            <td>学生编号：</td>
+                            <td> @Html.DisplayFor(model => model.NumberStudent)</td>
+                        </tr>
+                        <tr>
+                            <td>姓名： </td>
+                            <td> @Html.DisplayFor(model => model.NameStudent)</td>
+                        </tr>
+                        <tr>
+                            <td>权限：</td>
+                            <td> @Html.DisplayFor(model => model.IDAuthority)</td>
+                        </tr>
+                        <tr>
+                            <td>权限等级：</td>
+                            <td> @Html.DisplayFor(model => model.LevelAuthority)</td>
+                        </tr>
+                        <tr>
+                            <td> 年龄： </td>
+                            <td> @Html.DisplayFor(model => model.AgeStudent)</td>
+                        </tr>
+                        <tr>
+
+                            <td> 年级：</td>
+                            <td> @Html.DisplayFor(model => model.GradeStudent) </td>
+                        </tr>
+                        <tr>
+                            <td> 学制： </td>
+                            <td>  @Html.DisplayFor(model => model.YearsStudent) </td>
+                        </tr>
+                        <tr>
+                            <td> 头像：</td>
+                            <td> @Html.DisplayFor(model => model.ImageStudent) </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

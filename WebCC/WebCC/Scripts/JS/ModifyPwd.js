@@ -1,0 +1,3 @@
+﻿$(function () {
+    AddReadyValidate_ModifyPwd();
+})

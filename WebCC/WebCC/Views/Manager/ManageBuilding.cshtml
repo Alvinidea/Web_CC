@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WebCC.Building_table>
+
+@{
+    ViewBag.Title = "ManageBuilding";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageBuilding</h2>
+
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    num: $('#Building_Num').val(),
+                    name: $('#Building_Name').val(),
+                    roomNum: $('#Building_RoomNum').val()
+                },
+                url: "ManageBuilding_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+            $('#Building_Num').val("");
+            $('#Building_Name').val("");
+            $('#Building_RoomNum').val("")
+        });
+    })
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加教学楼信息" />
+</p>
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 4px 20px;
+                border-radius: 6px;
+            }
+    </style>
+    <div class="Internal_Style">
+        <input type="number" id="Building_Num" placeholder="请输入教学楼号" required="required" />
+        <input type="text" id="Building_Name" placeholder="请输入教学楼名" required="required"  />
+        <input type="number" id="Building_RoomNum" placeholder="请输入教学楼教室数" required="required" />
+        <p>
+            <input type="button" id="Add_Ok" value="添加教学楼" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountBuilding)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountBuilding)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

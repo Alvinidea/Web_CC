@@ -1,0 +1,142 @@
+﻿@model IEnumerable<WebCC.ManageFinishedSetCourse_V>
+
+@{
+    ViewBag.Title = "ManageFinishedSetCourse";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageFinishedSetCourse</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudyTimeCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTimeNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccommodateNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureNewCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailTeacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumClassroom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesectionSchoolhour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesectionSchoolhourDetail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudyTimeCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeginTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTimeNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccommodateNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatureNewCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailTeacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumClassroom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesectionSchoolhour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesectionSchoolhourDetail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

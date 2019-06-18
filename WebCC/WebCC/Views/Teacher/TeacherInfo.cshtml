@@ -1,0 +1,138 @@
+﻿@model WebCC.ManageTeacher_V
+
+@{
+    ViewBag.Title = "TeacherInfo";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+<style>
+    .Info_Interduce_User {
+        text-align: center;
+        font-family: 'Microsoft YaHei';
+        font-weight: 900;
+        font-size: 20px;
+    }
+
+    .ManageTeacher_left {
+        width: 60%;
+        float: left;
+        text-align: center;
+    }
+
+    .ManageTeacher_right {
+        width: 40%;
+        float: right;
+        text-align: center;
+    }
+</style>
+
+<div class="Info_Interduce_User">
+    <h2>教师个人信息</h2>
+
+    <div class="ManageTeacher_left">
+        <div class="panel panel-info">
+            <div class="panel-heading">Detail Infomation</div>
+            <div class="panel-body">
+                <h4>Hello @Session["LoginedName"]</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IDTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IDTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NumberTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NumberTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NameTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NameTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmailTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmailTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IDAuthority)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IDAuthority)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LevelAuthority)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LevelAuthority)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GradeTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GradeTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SexTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SexTeacher)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AgeTeacher)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AgeTeacher)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImageTeacher)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ImageTeacher)
+                    </dd>
+                </dl>
+            </div>
+            <br />
+        </div>
+    </div>
+            <div class="ManageTeacher_right">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Awesome Photo</div>
+                    <div class="panel-body">
+                        <img src="~/Content/Images/test.jpg" width="180px" height="240px" />"
+                    </div>
+                    <button type="button" class="btn btn-primary" id="Info_ChangeImage">改变形象</button>
+                    <br />
+                </div>
+            </div>
+        </div>

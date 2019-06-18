@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+    <link href="~/Content/SFQ/navsite.css" rel="stylesheet" />
+    <link href="~/Content/SFQ/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/JS/avgrund.js"></script>
+    <link href="~/Content/CSS/avgrund.css" rel="stylesheet" />
+
+    <link href="~/Content/Paging/jquery.pagination.css" rel="stylesheet" />
+    <script src="~/Content/Paging/jquery.pagination.min.js"></script>
+
+    <link href="~/Content/CSS/dynamicAddCodeStyle.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei UI';
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .Mana_header {
+            width: 100%;
+            height: 50px;
+            border-radius: 6px;
+            background-color: skyblue;
+        }
+
+        .Mana_Container {
+            width: 100%;
+            height: 800px;
+            border-radius: 6px;
+        }
+
+        /*.Mana_LeftList {
+            padding: 30px 50px;
+            width: 15%;
+            height: 800px;
+            border-radius: 6px;
+            background-color: deepskyblue;
+            float: left;
+        }*/
+
+        .Mana_RightBody {
+            width: 100%;
+            height: 800px;
+            border-radius: 6px;
+            float: right;
+            overflow: scroll;
+        }
+
+        .Mana_footer {
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            border-radius: 6px;
+            background-color: cornflowerblue;
+            clear: both;
+        }
+    </style>
+    <script type="text/javascript">
+            //用于导航栏
+            $(document).ready(function () {
+                var trigger = $('.hamburger'),
+                    overlay = $('.overlay'),
+                    isClosed = false;
+                trigger.click(function () {
+                    hamburger_cross();
+                });
+                function hamburger_cross() {
+                    if (isClosed == true) {
+                        overlay.hide();
+                        trigger.removeClass('is-open');
+                        trigger.addClass('is-closed');
+                        isClosed = false;
+                    } else {
+                        overlay.show();
+                        trigger.removeClass('is-closed');
+                        trigger.addClass('is-open');
+                        isClosed = true;
+                    }
+                }
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $('#wrapper').toggleClass('toggled');
+                });
+            });
+    </script>
+</head>
+<body>
+    <div class="Mana_header">
+        <nav class="navbar navbar-default navbar-fixed-top selfnav">
+            <div class="container">
+                <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                    <span class="hamb-top"></span>
+                    <span class="hamb-middle"></span>
+                    <span class="hamb-bottom"></span>
+                </button>
+            </div>
+            <div class="navbar-header" style="margin-left: 10%;">
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">WebCC</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-text">
+                    <li class="text-center">
+                        <span style="font-family:'MS Outlook'; font-style:italic; color:lightcoral; margin:0px 100px;padding:0px 80px;">
+                            任何超脱飞扬的思想都会砰然坠地——现实的引力实在是太沉重
+                            &nbsp;&nbsp; ———&nbsp;《三体》
+                        </span>
+                    </li>
+                </ul>
+                <ul id="Stu_header_In" class="nav navbar-nav navbar-right">
+                    @if (Session["LoginedName"] == null)
+                    {
+                        <li>请返回登陆:</li>
+                        <li>@Html.ActionLink("denglu", "Login", "Home")</li>
+                    }
+                    else
+                    {
+                        <li class="">欢迎您 ：@Session["LoginedName"] 管理员</li>
+                        <li class="">@Html.ActionLink("安全退出", "Logout", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="Mana_Container">
+        @*<div class="Mana_LeftList">*@
+
+        <div id="wrapper" class="col-lg-12 col-md-12">
+            <div class="overlay"></div>
+            <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                <ul class="nav sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#"></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            通知
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist1" class="dropdown-menu" role="menu">
+                            <li><a href="@Url.Action("Index","Manager")">告知</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            权限信息
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist2" class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("权限信息", "ManageAuthority", "Manager")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            用户信息
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist3" class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("个人信息", "ManageInfo", "Manager")</li>
+                            <li>@Html.ActionLink("管理员信息", "ManageManager", "Manager")</li>
+                            <li>@Html.ActionLink("教师信息", "ManageTeacher", "Manager")</li>
+                            <li>@Html.ActionLink("学生信息", "ManageStudent", "Manager")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            课程信息
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist4" class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("上课时间信息", "ManageSchoolhour", "Manager")</li>
+                            <li>@Html.ActionLink("课程信息", "ManageCourse", "Manager")</li>
+                            <li>@Html.ActionLink("已开设课程信息", "ManageFinishedSetCourse", "Manager")</li>
+                            <li>@Html.ActionLink("学生选课信息", "ManageStuChooseCourse", "Manager")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            成绩信息
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist4" class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("学生成绩单", "ManageStuGrade", "Manager")</li>
+                            <li>@Html.ActionLink("学生挂科信息", "ManageStuGrade", "Manager")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-fw fa-database"></i>
+                            后勤信息
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="bbslist4" class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("宿舍信息", "ManageDorm", "Manager")</li>
+                            <li>@Html.ActionLink("住宿信息", "ManageLiveDorm", "Manager")</li>
+                            <li>@Html.ActionLink("教学楼信息", "ManageBuilding", "Manager")</li>
+                            <li>@Html.ActionLink("教室信息", "ManageClassroom", "Manager")</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        @*</div>*@
+        <div class="Mana_RightBody">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Manager Operation</div>
+                <div class="panel-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="Mana_footer">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Web选课系统</p>
+            </footer>
+        </div>
+</body>
+</html>

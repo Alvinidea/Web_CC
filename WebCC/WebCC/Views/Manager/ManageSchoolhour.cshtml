@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebCC.Schoolhour_table>
+
+@{
+    ViewBag.Title = "ManageSchoolhour";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageSchoolhour</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDSchoolhour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesectionSchoolhour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesectionSchoolhourDetail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDSchoolhour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesectionSchoolhour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesectionSchoolhourDetail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

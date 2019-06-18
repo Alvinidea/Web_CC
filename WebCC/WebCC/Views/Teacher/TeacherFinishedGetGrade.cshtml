@@ -1,0 +1,184 @@
+﻿@model IEnumerable<WebCC.TeacherFinishedGetGrade_V>
+
+@{
+    ViewBag.Title = "TeacherFinishedGetGrade";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<script>
+    //这是在第一次点击后 出现的button需要的方法
+    function updateStuGrade() {
+        $.ajax({
+            type: "post",
+            url: "TeacherSetStuGrade_Update",
+            data: { stu: $('#StuName0').val() },
+            datatype: "Json",
+            success: function () {
+                alert("Success!!!");
+            },
+            error: function () {
+                alert("Error!!!");
+            }
+        });
+    };
+
+    $(function () {
+        $("#GradeSheet_button").click(function () {
+            if ($("#GradeSheet_text").val() == null) {
+                return;
+            }
+            $.ajax({
+                type: "post",
+                url: "TeacherFinishedGetGrade_AccordingNum",
+                data:
+                { num: $("#GradeSheet_text").val() },
+                datatype: "json",
+                success: function () {
+
+                },
+                error: function (data) {
+                    alert("");
+                }
+            });
+        });
+        $("#InputGrade_button").click(function () {
+            if ($("#GradeSheet_text").val() == null) {
+                return;
+            }
+            $.ajax({
+                type: "post",
+                url: "TeacherSetStuGrade",
+                data: "",
+                datatype: "json",
+                success: function (data) {
+                    var arr = [];
+                    arr.push('<table class="table">');
+                    arr.push('<th>课程</th>');
+                    arr.push('<th>学号</th>');
+                    arr.push('<th>姓名</th>');
+                    arr.push('<th>学分</th>');
+                    arr.push('<th>课程性质</th>');
+                    arr.push('<th>成绩</th>');
+                    arr.push('<th>更新成绩</th>');
+                    $.each(data, function (i, item) {
+                        arr.push('<tr><td>' + item.NameCourse + '</td>');
+                        arr.push('<td>' + item.NumberStudent + '</td>');
+                        arr.push('<td>' + item.NameStudent + '</td>');
+                        arr.push('<td>' + item.ScoreCourse + '</td>');
+                        arr.push('<td>' + item.NatureNewCourse + '</td>');
+                        arr.push('<td>' + item.GradeStudyCourse + '</td>');
+                        arr.push('<td><input type="number" id="StuName' + i + '" value=""/></td></tr>');
+
+                    });
+                    arr.push('<input type="button" id="submitStuGrade" value="更新成绩"/>')
+                    $("#Info_Body").html(
+                        arr.join('')
+                    );
+
+                    //解绑定
+                    $("#submitStuGrade").unbind();
+                    //重新绑定 此时 $("#InputGrade_button").click 相当于 对于$("#InputGrade_button").click的ready（）
+                    $("#submitStuGrade").bind('click', function () {
+                        updateStuGrade();
+                    });
+                },
+                error: function (data, e) {
+                    console.log(data);
+                    console.log(e);
+                    alert("Error!!!");
+                }
+            });
+        });
+
+
+    });
+</script>
+<div>
+    <style>
+        ulul {
+            margin: 50px 80px 50px 80px;
+            list-style-type: none;
+        }
+        .ulul li {
+            margin: 10px 15px 10px 15px;
+            list-style-type: none;
+            float: left;
+            border-radius: 6px;
+        }
+    </style>
+    <ul class="ulul" >
+        <li><input type="text" id="GradeSheet_text" placeholder="课程号码" /> </li>
+        <li><input type="button" id="GradeSheet_button" value="学生成绩单"/>  </li>
+        <li><input type="button" id="InputGrade_button" value="录入成绩" />  </li>
+        <li><input type="button" id="DeadGrade_button" value="挂科信息" />  </li>
+    </ul>
+</div>
+<div id="Info_Body">
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameTeacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateNewCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NatureNewCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeStudyCourse)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScoreCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameTeacher)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StateNewCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NatureNewCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeStudyCourse)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

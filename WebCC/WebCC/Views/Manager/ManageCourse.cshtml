@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebCC.Course_table>
+
+@{
+    ViewBag.Title = "ManageCourse";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageCourse</h2>
+
+        <script>
+            $(function () {
+                //显示添加界面
+                $("#showAddPanel").click(function () {
+                    Avgrund.show("#elementID");
+                });
+                //取消显示添加界面
+                $("#Add_Cancel").click(function () {
+                    Avgrund.hide();
+                });
+                $("#Add_Ok").click(function () {
+                    $.ajax({
+                        type: "post",
+                        data: {
+                            NumberCourse: $('#NumberCourse').val(),
+                            NameCourse: $('#NameCourse').val(),
+                            ProfileCourse: $('#ProfileCourse').val(),
+                            ScoreCourse: $('#ScoreCourse').val(),
+                            StudyTimeCourse: $('#StudyTimeCourse').val(),
+                        },
+                        url: "ManageCourse_Add",
+                        datatype: "Json",
+                        success: function (data) {
+                            alert(data.msg);
+                        },
+                        error: function () {
+                            alert("Error");
+                        }
+                    });
+                    $('#NumberCourse').val("");
+                    $('#NameCourse').val("");
+                    $('#ProfileCourse').val("");
+                    $('#ScoreCourse').val("");
+                    $('#StudyTimeCourse').val("");
+                });
+            })
+
+        </script>
+        <p>
+            <input type="button" id="showAddPanel" value="添加课程" />
+        </p>
+        <div id="elementID" class="avgrund-popup">
+            <style>
+                .Internal_Style {
+                    text-align: center;
+                    border-radius: 6px;
+                }
+
+                    .Internal_Style input {
+                        font-family: 'Microsoft YaHei';
+                        font-size: 14px;
+                        font-weight: 800;
+                        margin: 4px 20px;
+                        border-radius: 6px;
+                    }
+            </style>
+            <div class="Internal_Style">
+                <input type="text" id="NumberCourse" placeholder="请输入课程编号" required="required" />
+                <input type="text" id="NameCourse" placeholder="请输入课程名" required="required" />
+                <input type="number" id="ScoreCourse" placeholder="请输入学分" required="required" />
+                <input type="number" id="StudyTimeCourse" placeholder="请输入学时" required="required" />
+                <input type="text" id="ProfileCourse" placeholder="请输入课程简介" value="000000" required="required" />
+                <p>
+                    <input type="button" id="Add_Ok" value="添加课程" />
+                    <input type="button" id="Add_Cancel" value="取消" />
+                </p>
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDCourse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberCourse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameCourse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfileCourse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreCourse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudyTimeCourse)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDCourse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberCourse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameCourse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProfileCourse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ScoreCourse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudyTimeCourse)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+
+        </table>

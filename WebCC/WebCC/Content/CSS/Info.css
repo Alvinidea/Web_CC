@@ -1,0 +1,99 @@
+﻿/**
+    Info 一致都用这
+*/
+
+.Info_Interduce_User {
+    text-align: center;
+    font-family: 'Microsoft YaHei';
+    font-weight: 900;
+    font-size: 20px;
+}
+
+
+.Info_Body {
+    width: 990px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.Info_left {
+    margin: 5px 0px 0px 0px;
+    width: 25%;
+    background-color:skyblue;
+    height: 95%;
+    border-radius: 6px;
+    float: left;
+}
+
+.Info_Right {
+    margin: 5px 0px 0px 0px;
+    width: 75%;
+    height: 95%;
+    border-radius: 6px;
+    float: left;
+    background-color: skyblue;
+    text-align: center;
+}
+
+/**
+    左边栏  头像
+*/
+.Info_image_show {
+    padding: 2px;
+    text-align: center;
+    width: 186px;
+    height: 186px;
+    margin: 10px 10px 10px 20px;
+}
+
+    .Info_image_show a img {
+        border: 4px groove #559dc2;
+        width: 160px;
+        height: 170px;
+    }
+
+    .Info_image_show a :hover {
+        border: 4px dashed #689b98;
+    }
+
+.Info_ulli {
+    padding: 5px;
+    text-align: center;
+    width: 186px;
+    margin: 10px;
+}
+
+    .Info_ulli ul {
+        list-style-type: none;
+    }
+
+        .Info_ulli ul li {
+            margin: 5px;
+            padding: 8px;
+            border: 2px groove #3786ae ;
+            border-radius:6px;
+        }
+
+            .Info_ulli ul li:hover, .Info_ulli ul li:visited {
+                color: cornflowerblue;
+            }
+
+.Info_Detail {
+    margin: 5%;
+    padding: 5%;
+    width: 80%;
+    height: 90%;
+    border-radius: 6px;
+    float: left;
+    background-color:whitesmoke;
+}
+
+.Info_imageRight {
+    float: right;
+    margin: 10px;
+}
+
+table {
+    border-spacing: 30px 30px;
+    margin: 25px auto;
+}

@@ -1,0 +1,49 @@
+﻿body {
+    font-family:'Microsoft YaHei';
+    font-weight:800;
+    font-size:18px;
+}
+.Login_Header {
+    height: 60px;
+    width: 100%;
+    background-color: skyblue;
+    
+}
+[name="Login_Header_Nav"] {
+    float: right;
+    padding: 5px 30px;
+    border-radius: 5px;
+    border-width:2px 2px;
+    border-color: blue;
+}
+.Login_Header_Nav_d {
+
+}
+.Login_Body {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 50px 80px 30px 80px;
+}
+.Login_LogoHeader {
+    text-align: center;
+    height: 20px;
+}
+
+.Login_ID {
+    height:60px;
+}
+
+.Login_Pwd {
+    height: 60px;
+}
+
+.Login_radio {
+    height: 60px;
+    text-align: center;
+}
+
+.Login_submit {
+    text-align:center;
+    height: 80px;
+}

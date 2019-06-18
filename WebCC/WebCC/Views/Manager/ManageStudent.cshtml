@@ -1,0 +1,321 @@
+﻿@model IEnumerable<WebCC.ManageStudent_V>
+
+@{
+    ViewBag.Title = "ManageStudent";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageStudent</h2>
+<script>
+        function Edit(id) {
+        $.ajax({
+            type: 'post',
+            datatype: 'json',
+            data: { IDStudent: id },
+            url:"@Url.Action("ManageStudent_Add_Edit", "Manager")",
+            success: function (data) {
+                alert(data.msg);
+            },
+            error: function () {
+                alert("错误");
+            }
+
+        });
+    };
+    function Delete(id) {
+        $.ajax({
+            type: 'post',
+            datatype: 'json',
+            data: { IDStudent: id },
+            url:"@Url.Action("ManageStudent_Add_Delete", "Manager")",
+            success: function (data) {
+                alert(data.msg);
+                $('tr[id=' + id + ']').remove();
+            },
+            error: function () {
+                alert("错误");
+            }
+        });
+        
+    };
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    NumberStudent: $('#NumberStudent').val(),
+                    NameStudent: $('#NameStudent').val(),
+                    AgeStudent: $('#AgeStudent').val(),
+                    GradeStudent: $('#GradeStudent').val(),
+                    YearsStudent: $('#YearsStudent').val(),
+                },
+                url: "ManageStudent_Add",
+                datatype: "Json",
+                success: function (data) {
+                    alert(data.msg);
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+            $('#NumberStudent').val("");
+            $('#NameStudent').val("");
+            $('#AgeStudent').val("");
+            $('#GradeStudent').val("");
+            $('#YearsStudent').val("");
+        });
+        $("#Search_infoByNameS").click(function () {
+            
+            $.ajax({
+                type: "post",
+                data: {
+                    NameStudent: $("#Search_infoByName").val(),
+                },
+                url: "ManageStudent_SearchByName",
+                datatype: "Json",
+                success: function (data) {
+                    alert(data.msg);
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+        $("#Search_infoByIDS").click(function () {         
+            $.ajax({
+                type: "post",
+                data: {
+                    NumberStudent: $("#Search_infoByID").val(),
+                },
+                url: "ManageStudent_SearchByID",
+                datatype: "Json",
+                success: function (data) {
+                    alert(data.msg);;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+    })
+
+
+</script>
+<p>
+    <div class="Nov_Search">
+        <ul>
+            <li>
+                <div class="Search">
+                    <div class="input-group">
+                        <input type="text" id="Search_infoByName" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button id="Search_infoByNameS"
+                                    class="btn btn-default" type="button">SearchByName !</button>
+                        </span>
+                    </div>
+                </div>
+           </li>
+            <li>
+                <div class="Search">
+                    <div class="input-group">
+                        <input type="text" id="Search_infoByID" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button id="Search_infoByIDS"
+                                    class="btn btn-default" type="button">
+                                SearchByID !
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <input type="button" class="btn btn-primary"
+                       id="showAddPanel" value="添加学生" />
+            </li>
+        </ul>
+    </div>
+</p>
+<style>
+    .Nov_Search {
+        width:900px;
+    }
+    .Search {
+        width: 300px;
+    }
+    .Nov_Search ul {
+        list-style-type: none;
+    }
+            .Nov_Search ul li {
+                float: left;
+                margin: 6px 8px;
+            }
+
+    .Internal_Style {
+        text-align: center;
+        border-radius: 8px;
+    }
+
+        .Internal_Style input {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+            font-weight: 800;
+            margin: 4px 20px;
+            border-radius: 6px;
+        }
+    .Table_info {
+        margin:0px 20px;
+    }
+</style>
+<div id="elementID" class="avgrund-popup">
+    <div class="Internal_Style">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Student Operation</div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>编号：</td>
+                        <td><input type="text" id="NumberStudent"
+                                   placeholder="请输入学生编号" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>姓名：</td>
+                        <td><input type="text" id="NameStudent" 
+                                   placeholder="请输入姓名" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>年龄：</td>
+                        <td><input type="number" id="AgeStudent" 
+                                   placeholder="请输入年龄" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>学制：</td>
+                        <td>
+                            <select id="YearsStudent">
+                                <option value="3" selected>三年制</option>
+                                <option value="4">四年制</option>
+                                <option value="5">五年制</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>年级：</td>
+                        <td>
+                            <select id="GradeStudent">
+                                <option value="1" selected>一年级</option>
+                                <option value="2">二年级</option>
+                                <option value="3">三年级</option>
+                                <option value="4">四年级</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <input type="button" class="btn btn-primary" id="Add_Ok" value="添加学生" />
+                    <input type="button" class="btn btn-primary" id="Add_Cancel" value="取消" />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Table_info">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDAuthority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LevelAuthority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgeStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearsStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageStudent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumDorm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountDorm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherLiveDorm)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.IDStudent">
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDAuthority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LevelAuthority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgeStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearsStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageStudent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumDorm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountDorm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherLiveDorm)
+                </td>
+                <td>
+                    <input type="button" id="editStuInfo"
+                           class="btn btn-primary" value="Edit" onclick="Edit(@item.IDStudent)" />
+                    <input type="button" id="deleteStuInfo"
+                           class="btn btn-primary" value="Delete" onclick="Delete(@item.IDStudent)" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>

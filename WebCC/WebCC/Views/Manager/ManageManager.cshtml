@@ -1,0 +1,166 @@
+﻿@model IEnumerable<WebCC.ManageManager_V>
+
+@{
+    ViewBag.Title = "ManageManager";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<h2>ManageManager</h2>
+
+<script>
+    $(function () {
+        //显示添加界面
+        $("#showAddPanel").click(function () {
+            Avgrund.show("#elementID");
+        });
+        //取消显示添加界面
+        $("#Add_Cancel").click(function () {
+            Avgrund.hide();
+        });
+        $("#Add_Ok").click(function () {
+            $.ajax({
+                type: "post",
+                data: {
+                    IDAuthority: $('#Auth_ID').val(),
+                    NumberArranger: $('#Manager_Num').val(),
+                    NameArranger: $('#Manager_Name').val(),
+                    EmailArranger : $('#Manager_Email').val(),
+                    AgeArranger: $('#Manager_Age').val(),
+                    SexArranger: $('#Manager_Sex').val(),
+                    PhoneNumArranger: $('#Manager_PhoneNum').val(),
+                    PasscodeArranger:$('#Manager_Pwd').val(),
+                },
+                url: "ManageManager_Add",
+                datatype: "Json",
+                success: function (data)
+                {
+                    alert(data.msg);
+                },
+                error: function ()
+                {
+                    alert("Error");
+                }
+            });
+            $('#Auth_ID').val("");
+            $('#Manager_Num').val("");
+            $('#Manager_Name').val("")
+            $('#Manager_Email').val("");
+            $('#Manager_Age').val("");
+            $('#Manager_Sex').val("")
+            $('#Manager_PhoneNum').val("");
+            $('#Manager_Pwd').val("");
+        });
+    })
+
+</script>
+<p>
+    <input type="button" id="showAddPanel" value="添加管理员" />
+</p>
+<div id="elementID" class="avgrund-popup">
+    <style>
+        .Internal_Style {
+            text-align: center;
+            border-radius: 6px;
+        }
+
+            .Internal_Style input {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+                font-weight: 800;
+                margin: 4px 20px;
+                border-radius: 6px;
+            }
+    </style>
+
+
+    <div class="Internal_Style">
+        <input type="number" id="Auth_ID" placeholder="请输入权限ID" required="required" />
+        <input type="text" id="Manager_Num" placeholder="请输入管理编号" required="required" />
+        <input type="text" id="Manager_Name" placeholder="请输入姓名" required="required" />
+        <input type="email" id="Manager_Email" placeholder="请输入Email" required="required" />
+        <input type="number" id="Manager_Age" placeholder="请输入年龄" required="required" />
+        <input type="text" id="Manager_Sex" placeholder="请输入性别" required="required" />
+        <input type="number" id="Manager_PhoneNum" placeholder="请输入手机号" required="required" />
+        <input type="text" id="Manager_Pwd" placeholder="请输入密码" value="000000" required="required" />
+        <p>
+            <input type="button" id="Add_Ok" value="添加管理员" />
+            <input type="button" id="Add_Cancel" value="取消" />
+        </p>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelAuthority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SexArranger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageArranger)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDAuthority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelAuthority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgeArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SexArranger)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageArranger)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
